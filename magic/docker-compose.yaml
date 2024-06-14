@@ -4,7 +4,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      pull_policy: missing
     env_file:
       - .env
     ports:
