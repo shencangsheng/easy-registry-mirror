@@ -1,11 +1,16 @@
 # 基础镜像
 FROM openresty/openresty:alpine
 
+# 设置环境变量，防止某些问题
+ENV LUAJIT_LIB=/usr/local/openresty/luajit/lib
+ENV LUAJIT_INC=/usr/local/openresty/luajit/include/luajit-2.1
+
 # 安装必须的依赖包
-RUN apk add --no-cache \
-    lua-cjson \
+RUN apk update && apk add --no-cache \
+    lua5.1-cjson \
     curl \
-    && /usr/local/openresty/luajit/bin/luarocks install lua-resty-http
+    luarocks \
+    && luarocks install lua-resty-http
 
 # 创建目录来存放Nginx配置文件
 RUN mkdir -p /etc/openresty
