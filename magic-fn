@@ -1,0 +1,72 @@
+#!/bin/bash
+
+# creator by shencangsheng
+
+source ./tools
+
+function magic_uninstall() {
+    docker compose down
+    rm -f .env
+
+    local content=$(
+        cat <<EOF
+
+Remove the 'proxies' configuration in /etc/docker/daemon.json, Then restart docker
+
+vim /etc/docker/daemon.json
+==============================================
+{
+${_RED}
+  "proxies": {
+    "http-proxy": "http://user:xxxxx@127.0.0.1:37890",
+    "https-proxy": "http://user:xxxxx@127.0.0.1:37890"
+  }
+${_NC}
+}
+===============================================
+
+systemctl daemon-reload
+systemctl restart docker
+EOF
+    )
+    echo -e "$content"
+}
+
+function magic_install() {
+    local sub_url=
+    read -r -p "Sub URL: " sub_url
+
+    local password=$(openssl rand -base64 24 | tr -dc 'A-Za-z0-9' | head -c 16)
+
+    cat <<EOF >.env
+MAGIC_SUB_URL=$sub_url
+MAGIC_USERNAME=user
+MAGIC_PASSWORD=$password
+EOF
+
+    docker compose up --build -d
+
+    local content=$(
+        cat <<EOF
+
+Configure the proxy in /etc/docker/daemon.json, Then restart docker
+
+vim /etc/docker/daemon.json
+
+==============================================
+{
+${_GREEN}
+  "proxies": {
+    "http-proxy": "http://user:$password@127.0.0.1:37890",
+    "https-proxy": "http://user:$password@127.0.0.1:37890"
+  }
+${_NC}
+}
+===============================================
+
+systemctl daemon-reload
+systemctl restart docker
+EOF
+    )
+    echo -e "$content"
+}
