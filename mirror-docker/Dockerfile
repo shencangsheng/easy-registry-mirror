@@ -1,9 +1,20 @@
-FROM alpine:3.20
+# 基础镜像
+FROM openresty/openresty:alpine
 
-RUN apk update && apk add --no-cache bash curl jq netcat-openbsd
+# 安装必须的依赖包
+RUN apk add --no-cache \
+    lua-cjson \
+    curl \
+    && /usr/local/openresty/luajit/bin/luarocks install lua-resty-http
 
-COPY webhook_listener.sh /usr/local/bin/webhook_listener.sh
+# 创建目录来存放Nginx配置文件
+RUN mkdir -p /etc/openresty
 
-RUN chmod +x /usr/local/bin/webhook_listener.sh
+# 拷贝本地Nginx配置文件到容器中
+COPY nginx.conf /etc/openresty/nginx.conf
 
-CMD ["bash", "/usr/local/bin/webhook_listener.sh"]
+# 暴露端口
+EXPOSE 80
+
+# 启动OpenResty
+CMD ["openresty", "-g", "daemon off;"]

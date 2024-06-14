@@ -1,10 +1,8 @@
 version: "3.0"
 services:
-  mirror-docker:
+  docker-registry:
     image: registry:2
     restart: always
-    ports:
-      - "5000:5000"
     volumes:
       - ./config.yml:/etc/docker/registry/config.yml
       - mirror-docker-vol:/var/lib/registry
@@ -14,7 +12,7 @@ services:
     environment:
       - REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY=/var/lib/registry
       - REGISTRY_HTTP_ADDR=0.0.0.0:5000
-  mirror-docker-webhook:
+  docker-registry-webhook:
     build:
       context: .
       dockerfile: Dockerfile
@@ -23,6 +21,8 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - mirror-docker-network
+    ports:
+      - "5000:80"
 volumes:
   mirror-docker-vol:
     external: true
