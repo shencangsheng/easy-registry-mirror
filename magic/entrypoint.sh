@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ -z "$url" ]; then
+if [ -z "$MAGIC_SUB_URL" ]; then
   echo "Error: The subscription address cannot be empty."
   exit 1
 fi
