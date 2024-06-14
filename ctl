@@ -18,7 +18,7 @@ _OS="$(uname -s)"
 case "${_OS}" in
 Linux*) machine=Linux ;;
 *)
-    Error "OS not supported: ${OS}"
+    Error "OS not supported: ${_OS}"
     exit 1
     ;;
 esac
