@@ -11,6 +11,7 @@ services:
       - "9090"
     networks:
       - magic-network
+    restart: always
 networks:
   magic-network:
     external: true
