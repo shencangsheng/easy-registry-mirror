@@ -23,6 +23,11 @@ Linux*) machine=Linux ;;
     ;;
 esac
 
+function magic_uninstall() {
+    docker compose down
+    rm -f .env
+}
+
 function magic_install() {
     local sub_url=
     read -r -p "Sub URL: " sub_url
@@ -60,6 +65,8 @@ function magic_entrypoint() {
     "install")
         magic_install $@
         ;;
+    "uninstall") ;;
+
     *)
         Error "Unknown option $1"
         exit 1
