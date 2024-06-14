@@ -11,10 +11,8 @@ http:
     X-Content-Type-Options: [nosniff]
 notifications:
   endpoints:
-    - name: my-webhook-endpoint
+    - name: alerter
       url: http://mirror-docker-webhook:8080
       timeout: 500ms
       threshold: 5
       backoff: 1s
-      eventtypes:
-        - pull
