@@ -17,7 +17,7 @@ services:
   mirror-docker-webhook:
     build:
       context: .
-      dockerfile: webhook/Dockerfile
+      dockerfile: Dockerfile
     restart: always
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
