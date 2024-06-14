@@ -1,0 +1,16 @@
+version: "3"
+services:
+  magic:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    ports:
+      - "7890"
+      - "9090"
+    networks:
+      - clash-network
+networks:
+  clash-network:
+    external: true

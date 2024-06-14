@@ -1,0 +1,15 @@
+version: "3.0"
+services:
+  mirror-docker:
+    image: registry:2
+    restart: always
+    volumes:
+      - mirror-docker-vol:/var/lib/registry
+    networks:
+      - magic-network
+volumes:
+  mirror-docker-vol:
+    external: true
+networks:
+  magic-network:
+    external: true

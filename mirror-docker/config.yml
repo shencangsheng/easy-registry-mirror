@@ -1,0 +1,16 @@
+version: 0.1
+log:
+  fields:
+    service: registry
+http:
+  addr: :5000
+  secret: asecretforlocaldevelopment
+  headers:
+    X-Content-Type-Options: [nosniff]
+notifications:
+  endpoints:
+    - name: syncrequest
+      url: http://your-webhook-server:80/pull-event
+      timeout: 500ms
+      threshold: 5
+      backoff: 1s
