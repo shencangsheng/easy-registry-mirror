@@ -1,13 +1,9 @@
-FROM python:3.9-slim
+FROM alpine:3.20
 
-WORKDIR /app
+RUN apk update && apk add --no-cache bash curl jq netcat-openbsd
 
-COPY requirements.txt requirements.txt
+COPY webhook_listener.sh /usr/local/bin/webhook_listener.sh
 
-RUN pip install --no-cache-dir -r requirements.txt
+RUN chmod +x /usr/local/bin/webhook_listener.sh
 
-COPY app app
-
-EXPOSE 80
-
-CMD ["python", "app/webhook.py"]
+CMD ["bash", "/usr/local/bin/webhook_listener.sh"]

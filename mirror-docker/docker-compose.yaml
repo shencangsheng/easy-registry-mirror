@@ -3,13 +3,30 @@ services:
   mirror-docker:
     image: registry:2
     restart: always
+    ports:
+      - "5000:5000"
     volumes:
+      - ./config.yml:/etc/docker/registry/config.yml
       - mirror-docker-vol:/var/lib/registry
     networks:
       - magic-network
+      - mirror-docker-network
+    environment:
+      - REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY=/var/lib/registry
+      - REGISTRY_HTTP_ADDR=0.0.0.0:5000
+  mirror-docker-webhook:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - mirror-docker-network
 volumes:
   mirror-docker-vol:
     external: true
 networks:
   magic-network:
     external: true
+  mirror-docker-network:
