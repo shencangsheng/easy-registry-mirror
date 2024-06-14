@@ -34,13 +34,13 @@ Remove the 'proxies' configuration in /etc/docker/daemon.json, Then restart dock
 vim /etc/docker/daemon.json
 ==============================================
 {
-$_RED
+${_RED}
   "proxies": {
     "http-proxy": "http://user:xxxxx@127.0.0.1:37890",
     "https-proxy": "http://user:xxxxx@127.0.0.1:37890"
   }
 }
-$_NC
+${_NC}
 ===============================================
 
 systemctl daemon-reload
@@ -71,12 +71,12 @@ vim /etc/docker/daemon.json
 
 ==============================================
 {
-$_GREEN
+${_GREEN}
   "proxies": {
     "http-proxy": "http://user:$password@127.0.0.1:37890",
     "https-proxy": "http://user:$password@127.0.0.1:37890"
   }
-$_NC
+${_NC}
 }
 ===============================================
 
