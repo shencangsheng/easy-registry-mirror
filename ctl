@@ -99,6 +99,11 @@ function magic_entrypoint() {
 
 }
 
+create_docker_vol "mirror-docker-vol"
+
+create_docker_network "magic-network"
+create_docker_network "mirror-docker-network"
+
 case "$1" in
 "magic")
     magic_entrypoint $@

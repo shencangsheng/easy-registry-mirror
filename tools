@@ -87,3 +87,21 @@ function contains_args() {
     done
     return 1
 }
+
+function create_docker_vol() {
+    local vol_name=$1
+
+    if ! docker volume inspect $vol_name >/dev/null 2>&1; then
+        Info "Creating volume $vol_name..."
+        docker volume create $vol_name
+    fi
+}
+
+function create_docker_network() {
+    local network_name=$1
+
+    if ! docker network inspect $network_name >/dev/null 2>&1; then
+        Info "Creating volume $network_name..."
+        docker network create $network_name
+    fi
+}
