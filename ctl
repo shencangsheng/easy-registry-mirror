@@ -32,7 +32,7 @@ function magic_install() {
     local sub_url=
     read -r -p "Sub URL: " sub_url
 
-    local password=$(openssl rand -base64 12)
+    local password=$(openssl rand -base64 24 | tr -dc 'A-Za-z0-9' | head -c 16)
 
     cat <<EOF >.env
 MAGIC_SUB_URL=$sub_url
