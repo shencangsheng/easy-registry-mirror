@@ -36,6 +36,9 @@ function magic_entrypoint() {
     "uninstall")
         magic_uninstall
         ;;
+    "join")
+        magic_join
+        ;;
     *)
         Error "Unknown option $1"
         exit 1
