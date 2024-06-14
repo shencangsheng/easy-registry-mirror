@@ -27,7 +27,8 @@ function magic_uninstall() {
     docker compose down
     rm -f .env
 
-    cat <<EOF
+    print_content $(
+        cat <<EOF
 
 Remove the 'proxies' configuration in /etc/docker/daemon.json, Then restart docker
 
@@ -39,14 +40,14 @@ ${_RED}
     "http-proxy": "http://user:xxxxx@127.0.0.1:37890",
     "https-proxy": "http://user:xxxxx@127.0.0.1:37890"
   }
-}
 ${_NC}
+}
 ===============================================
 
 systemctl daemon-reload
 systemctl restart docker
 EOF
-
+    )
 }
 
 function magic_install() {
@@ -63,7 +64,8 @@ EOF
 
     docker compose up --build -d
 
-    cat <<EOF
+    print_content $(
+        cat <<EOF
 
 Configure the proxy in /etc/docker/daemon.json, Then restart docker
 
@@ -83,6 +85,7 @@ ${_NC}
 systemctl daemon-reload
 systemctl restart docker
 EOF
+    )
 }
 
 function magic_entrypoint() {

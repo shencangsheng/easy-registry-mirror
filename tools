@@ -110,3 +110,7 @@ function create_docker_network() {
         docker network create $network_name
     fi
 }
+
+function print_content() {
+    echo -e "$1"
+}
