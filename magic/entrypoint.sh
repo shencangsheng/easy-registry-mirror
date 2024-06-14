@@ -12,7 +12,7 @@ sed -i '/^external-controller:/d' /root/.config/clash/config.yaml
 cat <<EOF >>/root/.config/clash/config.yaml
 
 authentication:
-  - "user:${MAGIC_USERNAME}"
+  - "user:${MAGIC_PASSWORD}"
 secret: "${MAGIC_PASSWORD}"
 external-controller: :9090
 EOF
