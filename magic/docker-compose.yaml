@@ -7,7 +7,7 @@ services:
     env_file:
       - .env
     ports:
-      - "7890"
+      - "37890:7890"
       - "9090"
     networks:
       - clash-network

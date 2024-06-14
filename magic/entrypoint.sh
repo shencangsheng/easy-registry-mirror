@@ -1,11 +1,11 @@
 #!/bin/sh
 
 if [ -z "$url" ]; then
-    echo "Error: The subscription address cannot be empty."
-    exit 1
+  echo "Error: The subscription address cannot be empty."
+  exit 1
 fi
 
-wget -T 10 -O /root/.config/clash/config.yaml "$MAGIC_URL"
+wget -T 10 -O /root/.config/clash/config.yaml "$MAGIC_SUB_URL"
 
 sed -i '/^external-controller:/d' /root/.config/clash/config.yaml
 

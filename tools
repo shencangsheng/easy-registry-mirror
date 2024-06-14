@@ -1,0 +1,91 @@
+#!/bin/bash
+
+# creator by shencangsheng
+set -e
+
+GLOAB_ARGS=("$@")
+
+Error() {
+    echo -e "\033[31m[Error] $1 \033[0m" >&2
+}
+
+Usage() {
+    echo -e "\033[33m[Usage] $1 \033[0m" >&2
+}
+
+Info() {
+    echo -e "[Info] $1" >&2
+}
+
+Todo() {
+    echo -e "\033[36m[Todo] $1 \033[0m" >&2
+}
+
+Notice() {
+    echo -e "\033[33m[Important] $1 \033[0m" >&2
+}
+
+function prompt_confirmation() {
+    local message=$1
+    local response
+
+    read -r -p "$message [Y/n] " response
+
+    case $response in
+    [yY][eE][sS] | [yY])
+        return 0
+        ;;
+    [nN][oO] | [nN])
+        return 1
+        ;;
+    *)
+        Error "Unknown option $response"
+        exit 1
+        ;;
+    esac
+}
+
+function check_directory() {
+    if [ ! -d "$1" ]; then
+        Error "「$1」 No such directory / Must be a directory"
+        exit 1
+    fi
+}
+
+function check_file() {
+    if [ ! -f "$1" ]; then
+        Error "「$1」 No such file / Must be a file"
+        exit 1
+    fi
+}
+
+function get_args_value() {
+    local key="--$1"
+    local def_value=$2
+    local value=$def_value
+    for arg in "${GLOAB_ARGS[@]}"; do
+        case $arg in
+        "${key}="*)
+            value="${arg#*=}"
+            break
+            ;;
+        esac
+    done
+    if [ -z "$value" ]; then
+        Error "「${key}」Variable is empty"
+        kill -9 $$
+    fi
+    echo $value
+}
+
+function contains_args() {
+    local key="$1"
+    for arg in "${GLOAB_ARGS[@]}"; do
+        case $arg in
+        "${key}")
+            return 0
+            ;;
+        esac
+    done
+    return 1
+}
