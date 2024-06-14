@@ -23,24 +23,19 @@ Linux*) machine=Linux ;;
     ;;
 esac
 
-function fn_magic() {
-    cd magic
-    Info "Start Magic"
-
-    case "$2" in
-    "install")
-        local sub_url=
-        read -r -p "Sub URL: " sub_url
-        cat <<EOF >.env
+function magic_install() {
+    local sub_url=
+    read -r -p "Sub URL: " sub_url
+    cat <<EOF >.env
 MAGIC_SUB_URL=$sub_url
 MAGIC_USERNAME=user
 MAGIC_PASSWORD=$RANDOM
 
 EOF
 
-        docker compose up -d
+    docker compose up -d
 
-        cat <<EOF
+    cat <<EOF
 
 vim /etc/docker/daemon.json
 ==============================================
@@ -55,6 +50,15 @@ vim /etc/docker/daemon.json
 systemctl daemon-reload
 systemctl restart docker
 EOF
+}
+
+function magic_entrypoint() {
+    cd magic
+    Info "Start Magic"
+
+    case "$2" in
+    "install")
+        magic_install $@
         ;;
     *)
         Error "Unknown option $1"
@@ -66,7 +70,7 @@ EOF
 
 case "$1" in
 "magic")
-    fn_magic
+    magic_entrypoint $@
     ;;
 *)
     Error "Unknown option $1"
