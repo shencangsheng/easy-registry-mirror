@@ -33,8 +33,11 @@ function fn_magic() {
         read -r -p "Sub URL: " sub_url
         cat <<EOF >.env
 MAGIC_SUB_URL=$sub_url
-MAGIC_USERNAME=$RANDOM
+MAGIC_USERNAME=user
 MAGIC_PASSWORD=$RANDOM
+
+docker secret create magic_password $MAGIC_USERNAME
+
 EOF
 
         docker compose up -d
@@ -45,8 +48,8 @@ vim /etc/docker/daemon.json
 ==============================================
 {
   "proxies": {
-    "http-proxy": "http://$MAGIC_USERNAME:$MAGIC_PASSWORD@127.0.0.1:37890",
-    "https-proxy": "http://$MAGIC_USERNAME:$MAGIC_PASSWORD@127.0.0.1:37890"
+    "http-proxy": "http://user:$MAGIC_PASSWORD@127.0.0.1:37890",
+    "https-proxy": "http://user:$MAGIC_PASSWORD@127.0.0.1:37890"
   }
 }
 ===============================================
