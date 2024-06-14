@@ -40,7 +40,7 @@ MAGIC_USERNAME=user
 MAGIC_PASSWORD=$password
 EOF
 
-    docker compose up --build --no-pull -d
+    docker compose up --build -d
 
     cat <<EOF
 
