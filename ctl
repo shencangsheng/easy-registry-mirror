@@ -31,11 +31,13 @@ function magic_uninstall() {
 function magic_install() {
     local sub_url=
     read -r -p "Sub URL: " sub_url
+
+    local password=$(openssl rand -base64 12)
+
     cat <<EOF >.env
 MAGIC_SUB_URL=$sub_url
 MAGIC_USERNAME=user
-MAGIC_PASSWORD=$RANDOM
-
+MAGIC_PASSWORD=$password
 EOF
 
     docker compose up -d
@@ -46,8 +48,8 @@ vim /etc/docker/daemon.json
 ==============================================
 {
   "proxies": {
-    "http-proxy": "http://user:$MAGIC_PASSWORD@127.0.0.1:37890",
-    "https-proxy": "http://user:$MAGIC_PASSWORD@127.0.0.1:37890"
+    "http-proxy": "http://user:$password@127.0.0.1:37890",
+    "https-proxy": "http://user:$password@127.0.0.1:37890"
   }
 }
 ===============================================
