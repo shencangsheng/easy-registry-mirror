@@ -27,7 +27,7 @@ function magic_uninstall() {
     docker compose down
     rm -f .env
 
-    print_content $(
+    local content=$(
         cat <<EOF
 
 Remove the 'proxies' configuration in /etc/docker/daemon.json, Then restart docker
@@ -48,6 +48,7 @@ systemctl daemon-reload
 systemctl restart docker
 EOF
     )
+    echo -e "$content"
 }
 
 function magic_install() {
@@ -64,7 +65,7 @@ EOF
 
     docker compose up --build -d
 
-    print_content $(
+    local content=$(
         cat <<EOF
 
 Configure the proxy in /etc/docker/daemon.json, Then restart docker
@@ -86,6 +87,7 @@ systemctl daemon-reload
 systemctl restart docker
 EOF
     )
+    echo -e "$content"
 }
 
 function magic_entrypoint() {
