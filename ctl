@@ -36,15 +36,13 @@ MAGIC_SUB_URL=$sub_url
 MAGIC_USERNAME=user
 MAGIC_PASSWORD=$RANDOM
 
-docker secret create magic_password $MAGIC_USERNAME
-
 EOF
 
         docker compose up -d
 
         cat <<EOF
 
-vim /etc/docker/daemon.json 
+vim /etc/docker/daemon.json
 ==============================================
 {
   "proxies": {
