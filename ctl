@@ -65,8 +65,9 @@ function magic_entrypoint() {
     "install")
         magic_install $@
         ;;
-    "uninstall") ;;
-
+    "uninstall")
+        magic_uninstall
+        ;;
     *)
         Error "Unknown option $1"
         exit 1
