@@ -1,4 +1,4 @@
-FROM dreamacro/clash
+FROM dreamacro/clash:latest
 
 ADD ./entrypoint.sh /
 
