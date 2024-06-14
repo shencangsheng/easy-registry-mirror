@@ -2,14 +2,16 @@
 
 # creator by shencangsheng
 
-set -e
+set -xve
 set -o pipefail
 
 cd $(dirname $(realpath $0))
 
 _PWD=$(pwd)
 
-source ./tools $@
+_ARGS=("$@")
+
+source ./tools
 
 _OS="$(uname -s)"
 
@@ -20,8 +22,6 @@ Linux*) machine=Linux ;;
     exit 1
     ;;
 esac
-
-_ARGS=("$@")
 
 function fn_magic() {
     cd magic
@@ -64,7 +64,9 @@ EOF
 }
 
 case "$1" in
-"magic") ;;
+"magic")
+    fn_magic
+    ;;
 *)
     Error "Unknown option $1"
     exit 1
