@@ -3,6 +3,11 @@
 # creator by shencangsheng
 set -e
 
+_RED='\033[0;31m'
+_GREEN='\033[0;32m'
+_YELLOW='\033[1;33m'
+_NC='\033[0m' # No Color
+
 Error() {
     echo -e "\033[31m[Error] $1 \033[0m" >&2
 }
