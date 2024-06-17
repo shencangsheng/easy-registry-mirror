@@ -7,12 +7,12 @@ storage:
     rootdirectory: /var/lib/registry
 http:
   addr: :5000
+  secret: asecretforlocaldevelopment
   headers:
     X-Content-Type-Options: [nosniff]
-notifications:
-  endpoints:
-    - name: alerter
-      url: http://mirror-docker-webhook:8080
-      timeout: 500ms
-      threshold: 5
-      backoff: 1s
+health:
+  storagedriver:
+    enabled: true
+    interval: 10s
+    threshold: 3
+auth:
