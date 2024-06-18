@@ -1,0 +1,100 @@
+#!/bin/bash
+
+# creator by shencangsheng
+
+source ./tools
+
+function mirror_docker_install() {
+    docker compose up -d
+
+    local content=$(
+        cat <<EOF
+
+Configure /etc/docker/daemon.json on the application server, Then restart docker
+
+vim /etc/docker/daemon.json
+
+==============================================
+{
+${_GREEN}
+  "registry-mirrors": ["http://xx.xx.xx.xx:5000"],
+  "insecure-registries": [
+    "xx.xx.xx.xx:5000"
+  ]
+${_NC}
+}
+===============================================
+
+systemctl daemon-reload
+systemctl restart docker
+
+## Trying
+
+docker pull xx.xx.xx.xx:5000/busybox:latest
+docker pull busybox:latest
+
+EOF
+    )
+    echo -e "$content"
+}
+
+function mirror_docker_uninstall() {
+    docker compose down
+
+    local content=$(
+        cat <<EOF
+
+Configure /etc/docker/daemon.json on the application server, Then restart docker
+
+vim /etc/docker/daemon.json
+
+==============================================
+{
+${_RED}
+  "registry-mirrors": ["http://xx.xx.xx.xx:5000"],
+  "insecure-registries": [
+    "xx.xx.xx.xx:5000"
+  ]
+${_NC}
+}
+===============================================
+
+systemctl daemon-reload
+systemctl restart docker
+
+EOF
+    )
+    echo -e "$content"
+}
+
+function mirror_docker_join() {
+    local content=$(
+        cat <<EOF
+
+Configure /etc/docker/daemon.json on the application server, Then restart docker
+
+vim /etc/docker/daemon.json
+
+==============================================
+{
+${_GREEN}
+  "registry-mirrors": ["http://xx.xx.xx.xx:5000"],
+  "insecure-registries": [
+    "xx.xx.xx.xx:5000"
+  ]
+${_NC}
+}
+===============================================
+
+systemctl daemon-reload
+systemctl restart docker
+
+## Trying
+
+docker pull xx.xx.xx.xx:5000/busybox:latest
+docker pull busybox:latest
+
+EOF
+    )
+    echo -e "$content"
+}

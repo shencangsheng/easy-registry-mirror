@@ -24,6 +24,12 @@ Linux*) machine=Linux ;;
 esac
 
 source ./magic-fn
+source ./mirror-docker-fn
+
+create_docker_vol "mirror-docker-vol"
+
+create_docker_network "magic-network"
+create_docker_network "mirror-docker-network"
 
 function magic_entrypoint() {
     cd magic
@@ -44,17 +50,35 @@ function magic_entrypoint() {
         exit 1
         ;;
     esac
-
 }
 
-create_docker_vol "mirror-docker-vol"
+function mirror_docker_entrypoint() {
+    cd mirror-docker
+    Info "Start Docker Registry"
 
-create_docker_network "magic-network"
-create_docker_network "mirror-docker-network"
+    case "$2" in
+    "install")
+        mirror_docker_install
+        ;;
+    "uninstall")
+        mirror_docker_uninstall
+        ;;
+    "join")
+        mirror_docker_join
+        ;;
+    *)
+        Error "Unknown option $1"
+        exit 1
+        ;;
+    esac
+}
 
 case "$1" in
 "magic")
     magic_entrypoint $@
+    ;;
+"docker")
+    mirror_docker_entrypoint $@
     ;;
 *)
     Error "Unknown option $1"
