@@ -4,7 +4,6 @@ services:
     image: registry:2
     restart: always
     volumes:
-      - ./config.yml:/etc/docker/registry/config.yml
       - mirror-docker-vol:/var/lib/registry
     networks:
       - magic-network
@@ -13,6 +12,8 @@ services:
       - REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY=/var/lib/registry
       - REGISTRY_HTTP_ADDR=:5000
       - REGISTRY_LOG_FIELDS_SERVICE=registry
+    ports:
+      - 15000:5000
   docker-registry-proxy:
     image: shencangsheng/registry-mirror-proxy:1.0.0
     restart: always
