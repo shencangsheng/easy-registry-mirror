@@ -105,8 +105,8 @@ function mirror_docker_help() {
   Usage: ./ctl docker [OPTION...]
 
   Examples:
-        ./ctl magic install # install docker registry
-        ./ctl magic uninstall # uninstall docker registry
-        ./ctl magic join # show trying
+        ./ctl docker install # install docker registry
+        ./ctl docker uninstall # uninstall docker registry
+        ./ctl docker join # show trying
 EOF
 }
