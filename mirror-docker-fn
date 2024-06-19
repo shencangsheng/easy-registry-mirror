@@ -142,7 +142,7 @@ function mirror_docker_exec_sync_images() {
   requirements=$(cat requirements.txt)
 
   for image in "${requirements[@]}"; do
-    docker pull image
+    docker pull $image
     docker tag $image 127.0.0.1:15000/$image
     docker push 127.0.0.1:15000/$image
   done
@@ -157,5 +157,6 @@ function mirror_docker_help_sync_images() {
   Examples:
         ./ctl docker sync install # enable auto sync images task
         ./ctl docker sync uninstall # uninstall auto sync images task
+        ./ctl doecker sync exec # sync requirements.txt images
 EOF
 }
