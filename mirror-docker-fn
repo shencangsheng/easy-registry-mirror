@@ -111,7 +111,7 @@ function mirror_docker_help() {
 EOF
 }
 
-function mirror_docker_enable_requirements_task() {
+function mirror_docker_install_sync_images() {
 
   local cron_file=$(get_cron_file)
 
@@ -128,12 +128,12 @@ function mirror_docker_enable_requirements_task() {
 
 }
 
-function mirror_docker_enable_requirements_task() {
+function mirror_docker_uninstall_sync_images() {
   local cron_file=$(get_cron_file)
-  sed -i "\|$PWD/ctl docker sync-images exec|d" $cron_file
+  sed -i "\|$PWD/ctl docker sync exec|d" $cron_file
 }
 
-function mirror_docker_sync_images() {
+function mirror_docker_exec_sync_images() {
 
   requirements=$(cat requirements.txt)
 
@@ -143,4 +143,15 @@ function mirror_docker_sync_images() {
     docker push 127.0.0.1:15000/$image
   done
 
+}
+
+function mirror_docker_help_sync_images() {
+  cat <<EOF
+
+  Usage: ./ctl docker sync [OPTION...]
+
+  Examples:
+        ./ctl docker sync install # enable auto sync images task
+        ./ctl docker sync uninstall # uninstall auto sync images task
+EOF
 }

@@ -49,7 +49,7 @@ function magic_entrypoint() {
         magic_help
         ;;
     *)
-        Error "Unknown option $1"
+        Error "Unknown option $2"
         exit 1
         ;;
     esac
@@ -69,19 +69,22 @@ function mirror_docker_entrypoint() {
     "join")
         mirror_docker_join
         ;;
-    "sync-images")
+    "sync")
         case "$3" in
         "exec")
-            mirror_docker_sync_images
+            mirror_docker_exec_sync_images
             ;;
-        "enable")
-            mirror_docker_enable_requirements_task
+        "install")
+            mirror_docker_install_sync_images
             ;;
-        "del")
-            mirror_docker_del_requirements_task
+        "uninstall")
+            mirror_docker_unistanll_sync_images
+            ;;
+        "help")
+            mirror_docker_help_sync_images
             ;;
         *)
-            Error "Unknown option $1"
+            Error "Unknown option $3"
             exit 1
             ;;
         esac
@@ -90,7 +93,7 @@ function mirror_docker_entrypoint() {
         mirror_docker_help
         ;;
     *)
-        Error "Unknown option $1"
+        Error "Unknown option $2"
         exit 1
         ;;
     esac
