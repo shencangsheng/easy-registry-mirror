@@ -24,13 +24,21 @@ chmod +x ctl
 
 ## Principle
 
-![Docker Registry Proxy](images/docker-proxy.png)
+```mermaid
+graph TD;
+    A[Docker Action] --> B[Docker Registry Proxy];
+    B --> C{docker pull?};
+    C -- Yes --> D[docker pull image];
+    C -- No --> E[Docker Registry Server];
+    D --> F[Upload Docker Registry];
+    F --> E
+```
 
 ## Credits
 
 This project was inspired by the [shencangsheng/registry-mirror-proxy](https://github.com/shencangsheng/registry-mirror-proxy) available in the GitHub project.
 
-## 疑难杂症
+## Problem
 
 If your server can no longer pull images, download the required images from the project's `Releases`. On your server, run `gunzip -c xxx.tar.gz | docker load` to load the images. Use `./ctl magic help` to learn how to use the project.
 

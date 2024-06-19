@@ -24,7 +24,15 @@ chmod +x ctl
 
 ## Principle
 
-![Docker Registry Proxy](images/docker-proxy.png)
+```mermaid
+graph TD;
+    A[Docker Action] --> B[Docker Registry Proxy];
+    B --> C{docker pull?};
+    C -- Yes --> D[docker pull image];
+    C -- No --> E[Docker Registry Server];
+    D --> F[Upload Docker Registry];
+    F --> E
+```
 
 ## Credits
 
@@ -39,3 +47,7 @@ This project was inspired by the [shencangsheng/registry-mirror-proxy](https://g
 A short snippet describing the license (MIT)
 
 MIT © Cangsheng Shen
+
+```
+
+```
