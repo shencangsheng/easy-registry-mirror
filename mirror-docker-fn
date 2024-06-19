@@ -5,10 +5,10 @@
 source ./tools
 
 function mirror_docker_install() {
-    docker compose up -d
+  docker compose up -d
 
-    local content=$(
-        cat <<EOF
+  local content=$(
+    cat <<EOF
 
 Configure /etc/docker/daemon.json on the application server, Then restart docker
 
@@ -34,15 +34,15 @@ docker pull xx.xx.xx.xx:5000/busybox:latest
 docker pull busybox:latest
 
 EOF
-    )
-    echo -e "$content"
+  )
+  echo -e "$content"
 }
 
 function mirror_docker_uninstall() {
-    docker compose down
+  docker compose down
 
-    local content=$(
-        cat <<EOF
+  local content=$(
+    cat <<EOF
 
 Configure /etc/docker/daemon.json on the application server, Then restart docker
 
@@ -63,13 +63,13 @@ systemctl daemon-reload
 systemctl restart docker
 
 EOF
-    )
-    echo -e "$content"
+  )
+  echo -e "$content"
 }
 
 function mirror_docker_join() {
-    local content=$(
-        cat <<EOF
+  local content=$(
+    cat <<EOF
 
 Configure /etc/docker/daemon.json on the application server, Then restart docker
 
@@ -95,6 +95,18 @@ docker pull xx.xx.xx.xx:5000/busybox:latest
 docker pull busybox:latest
 
 EOF
-    )
-    echo -e "$content"
+  )
+  echo -e "$content"
+}
+
+function mirror_docker_help() {
+  cat <<EOF
+
+  Usage: ./ctl docker [OPTION...]
+
+  Examples:
+        ./ctl magic install # install docker registry
+        ./ctl magic uninstall # uninstall docker registry
+        ./ctl magic join # show trying
+EOF
 }

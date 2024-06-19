@@ -103,3 +103,15 @@ EOF
 
   echo -e "$content"
 }
+
+function magic_help() {
+  cat <<EOF
+
+  Usage: ./ctl magic [OPTION...]
+
+  Examples:
+        ./ctl magic install # install magic
+        ./ctl magic uninstall # uninstall magic
+        ./ctl magic join # show trying
+EOF
+}

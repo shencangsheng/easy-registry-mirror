@@ -45,6 +45,9 @@ function magic_entrypoint() {
     "join")
         magic_join
         ;;
+    "help")
+        magic_help
+        ;;
     *)
         Error "Unknown option $1"
         exit 1
@@ -66,12 +69,66 @@ function mirror_docker_entrypoint() {
     "join")
         mirror_docker_join
         ;;
+    "help")
+        mirror_docker_help
+        ;;
     *)
         Error "Unknown option $1"
         exit 1
         ;;
     esac
 }
+
+function help() {
+    cat <<EOF
+
+    Designed for quickly setting up a private Docker registry without requiring any modifications to existing Dockerfiles or docker-compose.yaml files, ensuring minimal migration costs. Future support will include additional repositories such as npm, Maven, and pip.
+
+    Usage: ./ctl [OPTION...]
+
+    Examples:
+        ./ctl help
+        ./ctl docker help
+        ./ctl magic help
+
+    Other options:
+
+         -h, --help                 give this help list
+           , --help-cn              中文帮助文档 
+EOF
+}
+
+function help_cn() {
+    cat <<EOF
+
+    用于快速自建 Docker 私有仓库，并且无需修改已运行的 Dockerfile/ docker-compose.yaml，几乎没有迁移成本；未来会支持更多 npm、Maven、pip 等仓库。
+
+    Usage: ./ctl [OPTION...]
+
+    Examples:
+        ./ctl help
+        ./ctl docker help
+        ./ctl magic help
+
+    Other options:
+
+         -h, --help                 give this help list
+           , --help-cn              中文帮助文档 
+EOF
+}
+
+for arg in "${GLOAB_ARGS[@]}"; do
+    case $arg in
+    --help | -h | help)
+        help
+        exit 0
+        ;;
+    --help-cn | help-cn)
+        help_cn
+        exit 0
+        ;;
+    esac
+done
 
 case "$1" in
 "magic")
