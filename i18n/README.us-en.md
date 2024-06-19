@@ -32,7 +32,7 @@ This project was inspired by the [shencangsheng/registry-mirror-proxy](https://g
 
 ## 疑难杂症
 
-如果你的服务器已经无法 pull 到镜像了，那么在项目的 `Releases` 下载项目所需要的镜像，在服务器运行 `gunzip -c xxx.tar.gz | docker load` 来载入镜像，`./ctl magic help` 来了解如何使用
+If your server can no longer pull images, download the required images from the project's `Releases`. On your server, run `gunzip -c xxx.tar.gz | docker load` to load the images. Use `./ctl magic help` to learn how to use the project.
 
 ## License
 
