@@ -20,7 +20,7 @@ chmod +x ctl
 
 ## Upcoming Features
 
-1. NPM Registry
+1. npm Registry
 
 ## Principle
 
