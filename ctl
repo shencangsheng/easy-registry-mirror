@@ -117,25 +117,20 @@ function help_cn() {
 EOF
 }
 
-for arg in "${_ARGS[@]}"; do
-    case $arg in
-    --help | -h | help)
-        help
-        exit 0
-        ;;
-    --help-cn | help-cn)
-        help_cn
-        exit 0
-        ;;
-    esac
-done
-
 case "$1" in
 "magic")
     magic_entrypoint $@
     ;;
 "docker")
     mirror_docker_entrypoint $@
+    ;;
+--help | -h | help)
+    help
+    exit 0
+    ;;
+--help-cn | help-cn)
+    help_cn
+    exit 0
     ;;
 *)
     Error "Unknown option $1"
