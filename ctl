@@ -78,7 +78,7 @@ function mirror_docker_entrypoint() {
             mirror_docker_install_sync_images
             ;;
         "uninstall")
-            mirror_docker_unistanll_sync_images
+            mirror_docker_uninstall_sync_images
             ;;
         "help")
             mirror_docker_help_sync_images
