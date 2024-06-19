@@ -110,3 +110,37 @@ function mirror_docker_help() {
         ./ctl docker join # show trying
 EOF
 }
+
+function mirror_docker_enable_requirements_task() {
+
+  local cron_file=$(get_cron_file)
+
+  if [ ! -e "$cron_file" ]; then
+    touch $cron_file
+    chmod 600 "$cron_file"
+  fi
+
+  local sync_flag=$(cat $cron_file | grep "$_PWD/ctl" | wc -l)
+
+  if [ $sync_flag -eq 0 ]; then
+    echo "0 1 * * 1 bash $PWD/ctl docker sync-images exec" >>$cron_file
+  fi
+
+}
+
+function mirror_docker_enable_requirements_task() {
+  local cron_file=$(get_cron_file)
+  sed -i "\|$PWD/ctl docker sync-images exec|d" $cron_file
+}
+
+function mirror_docker_sync_images() {
+
+  requirements=$(cat requirements.txt)
+
+  for image in "${requirements[@]}"; do
+    docker pull image
+    docker tag $image 127.0.0.1:15000/$image
+    docker push 127.0.0.1:15000/$image
+  done
+
+}

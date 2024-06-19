@@ -69,6 +69,23 @@ function mirror_docker_entrypoint() {
     "join")
         mirror_docker_join
         ;;
+    "sync-images")
+        case "$3" in
+        "exec")
+            mirror_docker_sync_images
+            ;;
+        "enable")
+            mirror_docker_enable_requirements_task
+            ;;
+        "del")
+            mirror_docker_del_requirements_task
+            ;;
+        *)
+            Error "Unknown option $1"
+            exit 1
+            ;;
+        esac
+        ;;
     "help")
         mirror_docker_help
         ;;

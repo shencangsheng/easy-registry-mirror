@@ -110,3 +110,23 @@ function create_docker_network() {
         docker network create $network_name
     fi
 }
+
+function get_cron_file() {
+    local os_name=$(awk -F= '/^NAME/{print $2}' /etc/os-release)
+    local cron_file=
+    if [[ $os_name = *"Debian"* ]]; then
+        cron_file="/var/spool/cron/crontabs/root"
+    elif [[ $os_name = *"CentOS"* ]]; then
+        cron_file="/var/spool/cron/root"
+    else
+        Error "This OS is not recognizable"
+        exit 1
+    fi
+
+    if [ ! -e "$cron_file" ]; then
+        touch $cron_file
+        chmod 600 "$cron_file"
+    fi
+
+    echo $cron_file
+}
