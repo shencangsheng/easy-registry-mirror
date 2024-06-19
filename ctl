@@ -101,7 +101,7 @@ EOF
 function help_cn() {
     cat <<EOF
 
-    用于快速自建 Docker 私有仓库，并且无需修改已运行的 Dockerfile/ docker-compose.yaml，几乎没有迁移成本；未来会支持更多 npm、Maven、pip 等仓库。
+    用于快速自建 Docker 私有仓库，并且无需修改已运行的 Dockerfile / docker-compose.yaml，几乎没有迁移成本；未来会支持更多 npm、Maven、pip 等仓库。
 
     Usage: ./ctl [OPTION...]
 
