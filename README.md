@@ -16,15 +16,15 @@ chmod +x ctl
 
 ## Features
 
-1. Docker Register
+1. Docker Registry
 
 ## Upcoming Features
 
-1. NPM Register
+1. NPM Registry
 
 ## Principle
 
-![Docker Register Proxy](images/docker-proxy.png)
+![Docker Registry Proxy](images/docker-proxy.png)
 
 ## Credits
 
