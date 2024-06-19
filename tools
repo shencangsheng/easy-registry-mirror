@@ -118,6 +118,8 @@ function get_cron_file() {
         cron_file="/var/spool/cron/crontabs/root"
     elif [[ $os_name = *"CentOS"* ]]; then
         cron_file="/var/spool/cron/root"
+    elif [[ $os_name = *"Ubuntu"* ]]; then
+        cron_file="/var/spool/cron/crontabs/root"
     else
         Error "This OS is not recognizable"
         exit 1
