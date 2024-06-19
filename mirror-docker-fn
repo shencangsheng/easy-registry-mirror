@@ -123,7 +123,7 @@ function mirror_docker_install_sync_images() {
   local sync_flag=$(cat $cron_file | grep "$_PWD/ctl" | wc -l)
 
   if [ $sync_flag -eq 0 ]; then
-    echo "0 1 * * 1 bash $_PWD/ctl docker sync-images exec" >>$cron_file
+    echo "0 1 * * 1 bash $_PWD/ctl docker sync exec" >>$cron_file
   fi
 
 }
