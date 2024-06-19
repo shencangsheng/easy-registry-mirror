@@ -2,7 +2,7 @@
 
 简体中文 | [English](./i18n/README.us-en.md)
 
-在日渐严峻的今天，无论是公司还是个人，自建仓库是非常重要，这个项目用于快速自建`Docker`私有仓库，并且无需修改已运行的`Dockerfile`/`docker-compose.yaml`，几乎没有迁移成本；未来会支持更多`npm`、`Maven`、`pip`等仓库。
+在日渐严峻的今天，无论是公司还是个人，自建仓库是非常必要的，这个项目用于快速自建`Docker`私有仓库，并且无需修改已运行的`Dockerfile`/`docker-compose.yaml`，几乎没有迁移成本；未来会支持更多`npm`、`Maven`、`pip`等仓库。
 
 ## Trying
 
