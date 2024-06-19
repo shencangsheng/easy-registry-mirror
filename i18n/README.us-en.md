@@ -26,12 +26,14 @@ chmod +x ctl
 
 ```mermaid
 graph TD;
-    A[Docker Action] --> B[Docker Registry Proxy];
+    A[Docker Request] --> B[Docker Registry Proxy];
     B --> C{docker pull?};
     C -- Yes --> D[docker pull image];
     C -- No --> E[Docker Registry Server];
     D --> F[Upload Docker Registry];
     F --> E
+    E -- Response --> B
+    B -- Response --> A
 ```
 
 ## Credits
