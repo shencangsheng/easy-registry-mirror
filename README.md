@@ -49,7 +49,3 @@ This project was inspired by the [shencangsheng/registry-mirror-proxy](https://g
 A short snippet describing the license (MIT)
 
 MIT © Cangsheng Shen
-
-```
-
-```
