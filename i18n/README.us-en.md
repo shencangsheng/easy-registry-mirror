@@ -1,8 +1,8 @@
 # Easy Registry Mirror
 
-简体中文 | [English](./i18n/README.us-en.md)
+English | [简体中文](https://github.com/shencangsheng/easy-registry-mirror)
 
-在日渐严峻的今天，无论是公司还是个人，自建仓库是非常重要，这个项目用于快速自建`Docker`私有仓库，并且无需修改已运行的`Dockerfile`/`docker-compose.yaml`，几乎没有迁移成本；未来会支持更多`npm`、`Maven`、`pip`等仓库。
+In today's increasingly challenging environment, it is crucial for both companies and individuals to establish their own repositories. This project enables the rapid creation of a private `Docker registry` without requiring any modifications to existing `Dockerfile` or `docker-compose.yaml` files, ensuring minimal migration costs. Future support will include additional repositories such as `npm`, `Maven`, and `pip`.
 
 ## Trying
 
