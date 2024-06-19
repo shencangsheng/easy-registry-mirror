@@ -117,7 +117,7 @@ function help_cn() {
 EOF
 }
 
-for arg in "${GLOAB_ARGS[@]}"; do
+for arg in "${_ARGS[@]}"; do
     case $arg in
     --help | -h | help)
         help
