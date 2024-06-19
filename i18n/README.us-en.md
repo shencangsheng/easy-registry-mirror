@@ -12,11 +12,13 @@ cd easy-registry-mirror
 chmod +x ctl
 ./ctl help
 ./ctl docker install
+./ctl docker sync help
 ```
 
 ## Features
 
 1. Docker Registry
+2. Auto Sync Docker Images
 
 ## Upcoming Features
 
