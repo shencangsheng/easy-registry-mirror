@@ -22,7 +22,7 @@ chmod +x ctl
 
 1. NPM Register
 
-## Flow
+## Principle
 
 ![Docker Register Proxy](images/docker-proxy.png)
 
