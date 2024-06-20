@@ -108,6 +108,7 @@ function mirror_docker_help() {
         ./ctl docker install # install docker registry
         ./ctl docker uninstall # uninstall docker registry
         ./ctl docker join # show trying
+        ./ctl docker sync help # show sync help
 EOF
 }
 
