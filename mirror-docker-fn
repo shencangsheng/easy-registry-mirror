@@ -125,6 +125,7 @@ function mirror_docker_install_sync_images() {
 
   if [ $sync_flag -eq 0 ]; then
     echo "0 1 * * 1 bash $_PWD/ctl docker sync exec" >>$cron_file
+    Info "Create a task to complete"
   fi
 
 }
@@ -135,6 +136,7 @@ function mirror_docker_uninstall_sync_images() {
 
   if [ $sync_flag -gt 0 ]; then
     sed -i "\|$_PWD/ctl docker sync exec|d" $cron_file
+    Info "Remove a task to complete"
   fi
 }
 
