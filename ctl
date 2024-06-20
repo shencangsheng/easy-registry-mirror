@@ -102,7 +102,7 @@ function mirror_docker_entrypoint() {
 function help() {
     cat <<EOF
 
-    Designed for quickly setting up a private Docker registry without requiring any modifications to existing Dockerfiles or docker-compose.yaml files, ensuring minimal migration costs. Future support will include additional repositories such as npm, Maven, and pip.
+    Designed for quickly setting up a private Docker registry without requiring any modifications to existing Dockerfiles or docker-compose.yaml files, ensuring minimal migration costs. Future support will include additional repositories such as npm, maven, and pip.
 
     Usage: ./ctl [OPTION...]
 
@@ -121,7 +121,7 @@ EOF
 function help_cn() {
     cat <<EOF
 
-    用于快速搭建一个 Docker 私有仓库，并且无需修改已运行的 Dockerfile / docker-compose.yaml，几乎没有迁移成本；未来会支持更多 npm、Maven、pip 等仓库。
+    用于快速搭建一个 Docker 私有仓库，并且无需修改已运行的 Dockerfile / docker-compose.yaml，几乎没有迁移成本；未来会支持更多 npm、maven、pip 等仓库。
 
     Usage: ./ctl [OPTION...]
 
