@@ -141,16 +141,27 @@ function mirror_docker_exec_sync_images() {
 
   requirements=$(cat requirements.txt)
 
+  set +e
+
   for image in "${requirements[@]}"; do
     docker pull $image
     docker tag $image 127.0.0.1:15000/$image
     docker push 127.0.0.1:15000/$image
   done
 
+  set -e
+
 }
 
 function mirror_docker_help_sync_images() {
   cat <<EOF
+
+  edit mirror-docker/requirements.txt
+
+  -----
+  busybox:1.35.0
+  nginx:latest
+  -----
 
   Usage: ./ctl docker sync [OPTION...]
 
