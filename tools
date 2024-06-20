@@ -127,7 +127,7 @@ function get_cron_file() {
 
     if [ ! -e "$cron_file" ]; then
         touch $cron_file
-        chmod 600 "$cron_file"
+        chmod 600 $cron_file
     fi
 
     echo $cron_file
