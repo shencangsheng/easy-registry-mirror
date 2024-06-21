@@ -2,7 +2,7 @@
 
 简体中文 | [English](./i18n/README.us-en.md)
 
-在国内日渐严峻的网络下，无论是公司还是个人，自建仓库都是非常必要的，这个项目用于快速搭建一个`Docker`私有仓库，并且无需修改已运行的`Dockerfile`/`docker-compose.yaml`，几乎没有迁移成本；未来会支持更多`npm`、`maven`、`pip`等仓库。
+在国内日渐严峻的网络下，无论是公司还是个人，自建仓库都是非常有必要的，这个项目用于快速搭建一个`Docker`私有仓库，并且无需修改已运行的`Dockerfile`/`docker-compose.yaml`，几乎没有迁移成本；未来会支持更多`npm`、`maven`、`pip`等仓库。
 
 ## Trying
 
@@ -17,7 +17,7 @@ chmod +x ctl
 
 ## Features
 
-1. Docker Registry
+1. Proxy Docker Registry
 2. Auto Sync Docker Images
 
 ## Upcoming Features
@@ -25,6 +25,8 @@ chmod +x ctl
 1. npm Registry
 
 ## Principle
+
+原理是 Docker 的所有请求会先进入代理层，代理判断是否为获取镜像请求，代理层会先将镜像上传到 Docker Registry 中，再转发请求到 Docker Registry 中并响应；这样的策略与常见定期同步 Dockerhub 镜像不同的是，仅获取所需的镜像，避免流量和存储的过渡浪费。但依然提供了根据列表每周自动同步镜像的功能，执行 `./ctl docker sync help` 来了解如何使用
 
 ```mermaid
 graph TD;
