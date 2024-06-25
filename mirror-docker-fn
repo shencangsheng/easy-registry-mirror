@@ -142,7 +142,7 @@ function mirror_docker_uninstall_sync_images() {
 
 function mirror_docker_exec_sync_images() {
 
-  requirements=$(cat requirements.txt)
+  local requirements=$(cat requirements.txt)
 
   set +e
 
