@@ -13,18 +13,21 @@ git clone https://github.com/shencangsheng/easy-registry-mirror.git
 cd easy-registry-mirror
 chmod +x ctl
 ./ctl help
+./ctl docker help
 ./ctl docker install
 ./ctl docker sync help
+./ctl npm help
 ```
 
 ## Features
 
 1. Docker Registry
 2. Auto Sync Docker Images
+3. NPM Registry
 
 ## Upcoming Features
 
-1. npm Registry
+1. Maven Registry
 
 ## Principle
 

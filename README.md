@@ -11,8 +11,10 @@ git clone https://github.com/shencangsheng/easy-registry-mirror.git
 cd easy-registry-mirror
 chmod +x ctl
 ./ctl help
+./ctl docker help
 ./ctl docker install
 ./ctl docker sync help
+./ctl npm help
 ```
 
 ## Features
