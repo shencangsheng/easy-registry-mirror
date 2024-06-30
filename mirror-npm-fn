@@ -56,13 +56,13 @@ function mirror_npm_join() {
     1. Using Command Line Parameter
 
     $_GREEN
-    npm install --registry=http://127.0.0.1:14873 lodash
+    npm install --registry=http://xx.xx.xx.xx:14873 lodash
     $_NC
 
     2. Using npm Config Command
 
     $_GREEN
-    npm config set registry http://127.0.0.1:14873
+    npm config set registry http://xx.xx.xx.xx:14873
     npm install lodash
     $_NC
 
