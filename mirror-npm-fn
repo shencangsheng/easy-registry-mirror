@@ -25,7 +25,7 @@ MAGIC_PASSWORD=$MAGIC_PASSWORD
 EOF
     fi
 
-    docker compose up -d
+    docker compose up --build -d
 }
 
 function mirror_npm_uninstall() {
