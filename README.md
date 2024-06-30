@@ -23,7 +23,7 @@ chmod +x ctl
 
 ## Upcoming Features
 
-1. npm Registry
+1. Maven Registry
 
 ## Principle
 
@@ -44,6 +44,8 @@ graph TD;
 ## Credits
 
 This project was inspired by the [shencangsheng/registry-mirror-proxy](https://github.com/shencangsheng/registry-mirror-proxy) available in the GitHub project.
+
+This project was inspired by the [verdaccio/verdaccio](https://github.com/verdaccio/verdaccio) available in the GitHub project.
 
 ## 疑难杂症
 
