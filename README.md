@@ -19,6 +19,7 @@ chmod +x ctl
 
 1. Proxy Docker Registry
 2. Auto Sync Docker Images
+3. NPM Registry
 
 ## Upcoming Features
 

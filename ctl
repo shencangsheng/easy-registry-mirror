@@ -25,6 +25,7 @@ esac
 
 source ./magic-fn
 source ./mirror-docker-fn
+source ./mirror-npm-fn
 
 create_docker_vol "mirror-docker-vol"
 
@@ -99,6 +100,30 @@ function mirror_docker_entrypoint() {
     esac
 }
 
+function mirror_npm_entrypoint() {
+    cd mirror-npm
+    Info "Start NPM Registry"
+
+    case "$2" in
+    "install")
+        mirror_npm_install $@
+        ;;
+    "uninstall")
+        mirror_npm_uninstall
+        ;;
+    "join")
+        magic_join
+        ;;
+    "help")
+        mirror_npm_help
+        ;;
+    *)
+        Error "Unknown option $2"
+        exit 1
+        ;;
+    esac
+}
+
 function help() {
     cat <<EOF
 
@@ -110,6 +135,7 @@ function help() {
         ./ctl help
         ./ctl docker help
         ./ctl magic help
+        ./ctl npm help
 
     Other options:
 
@@ -129,6 +155,7 @@ function help_cn() {
         ./ctl help
         ./ctl docker help
         ./ctl magic help
+        ./ctl npm help
 
     Other options:
 
@@ -143,6 +170,9 @@ case "$1" in
     ;;
 "docker")
     mirror_docker_entrypoint $@
+    ;;
+"npm")
+    mirror_npm_entrypoint $@
     ;;
 --help | -h | help)
     help

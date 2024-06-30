@@ -1,0 +1,45 @@
+#!/bin/bash
+
+# creator by shencangsheng
+
+source ./tools
+
+function mirror_npm_install() {
+    cp -n example/config.yaml conf/config.yaml
+
+    echo '' >.env
+
+    if contains_args "--magic"; then
+
+        if [ ! -f "$_PWD/magic/.env" ]; then
+            Error "Need to install magic. exec: ./ctl magic hlep"
+            exit 1
+        fi
+
+        source $_PWD/magic/.env
+
+        cat <<EOF >.env
+ENABLE_MAGIC=TRUE
+MAGIC_USERNAME=$MAGIC_USERNAME
+MAGIC_PASSWORD=$MAGIC_PASSWORD
+EOF
+    fi
+
+    docker compose up -d
+}
+
+function mirror_npm_uninstall() {
+    docker compose down
+}
+
+function mirror_npm_help() {
+    cat <<EOF
+
+  Usage: ./ctl npm [OPTION...]
+
+  Examples:
+        ./ctl npm install # install npm registry
+        ./ctl npm install --magic # install npm registry, enable magic
+        ./ctl npm uninstall # uninstall npm registry
+EOF
+}
