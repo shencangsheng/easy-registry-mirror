@@ -113,7 +113,7 @@ function mirror_npm_entrypoint() {
         mirror_npm_uninstall
         ;;
     "join")
-        magic_join
+        mirror_npm_join
         ;;
     "help")
         mirror_npm_help

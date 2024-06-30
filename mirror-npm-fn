@@ -25,7 +25,7 @@ NO_PROXY="localhost,127.0.0.1"
 EOF
     fi
 
-    docker compose up --build -d
+    docker compose up -d
 }
 
 function mirror_npm_uninstall() {
@@ -42,4 +42,30 @@ function mirror_npm_help() {
         ./ctl npm install --magic # install npm registry, enable magic
         ./ctl npm uninstall # uninstall npm registry
 EOF
+}
+
+function mirror_npm_join() {
+    local content=$(
+        cat <<EOF
+
+    Methods to Set Custom Registry
+
+    Options:
+
+    1. Using Command Line Parameter
+
+    $_GREEN
+    npm install --registry=http://127.0.0.1:14873 lodash
+    $_NC
+
+    2. Using npm Config Command
+
+    $_GREEN
+    npm config set registry http://127.0.0.1:14873
+    npm install lodash
+    $_NC
+
+EOF
+    )
+    echo -e "$content"
 }
