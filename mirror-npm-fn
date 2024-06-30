@@ -19,9 +19,9 @@ function mirror_npm_install() {
         source $_PWD/magic/.env
 
         cat <<EOF >.env
-ENABLE_MAGIC=TRUE
-MAGIC_USERNAME=$MAGIC_USERNAME
-MAGIC_PASSWORD=$MAGIC_PASSWORD
+HTTP_PROXY="http://$MAGIC_USER:$MAGIC_PASSWORD@magic:7890"
+HTTPS_PROXY="http://$MAGIC_USER:$MAGIC_PASSWORD@magic:7890"
+NO_PROXY="localhost,127.0.0.1"
 EOF
     fi
 
