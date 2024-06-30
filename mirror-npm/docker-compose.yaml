@@ -8,7 +8,7 @@ services:
     volumes:
       - ./conf:/verdaccio/conf
       - mirror-npm-vol:/verdaccio/storage
-      - uid_entrypoint:/opt/verdaccio/docker-bin/uid_entrypoint
+      - ./uid_entrypoint:/opt/verdaccio/docker-bin/uid_entrypoint
     env_file:
       - .env
 volumes:
