@@ -5,6 +5,8 @@
 source ./tools
 
 function mirror_docker_install() {
+  cp -n example/requirements.txt requirements.txt
+
   docker compose up -d
 
   local content=$(
