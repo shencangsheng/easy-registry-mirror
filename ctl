@@ -28,6 +28,7 @@ source ./mirror-docker-fn
 source ./mirror-npm-fn
 
 create_docker_vol "mirror-docker-vol"
+create_docker_vol "mirror-npm-vol"
 
 create_docker_network "magic-network"
 create_docker_network "mirror-docker-network"
