@@ -26,9 +26,11 @@ esac
 source ./magic-fn
 source ./mirror-docker-fn
 source ./mirror-npm-fn
+source ./mirror-maven-fn
 
 create_docker_vol "mirror-docker-vol"
 create_docker_vol "mirror-npm-vol"
+create_docker_vol "mirror-maven-vol"
 
 create_docker_network "magic-network"
 create_docker_network "mirror-docker-network"
@@ -125,6 +127,30 @@ function mirror_npm_entrypoint() {
     esac
 }
 
+function mirror_maven_entrypoint() {
+    cd mirror-maven
+    Info "Start Maven Registry"
+
+    case "$2" in
+    "install")
+        mirror_maven_install $@
+        ;;
+    "uninstall")
+        mirror_maven_uninstall
+        ;;
+    "join")
+        mirror_maven_join
+        ;;
+    "help")
+        mirror_maven_help
+        ;;
+    *)
+        Error "Unknown option $2"
+        exit 1
+        ;;
+    esac
+}
+
 function help() {
     cat <<EOF
 
@@ -137,6 +163,7 @@ function help() {
         ./ctl docker help
         ./ctl magic help
         ./ctl npm help
+        ./ctl maven help
 
     Other options:
 
@@ -157,6 +184,7 @@ function help_cn() {
         ./ctl docker help
         ./ctl magic help
         ./ctl npm help
+        ./ctl maven help
 
     Other options:
 
@@ -174,6 +202,9 @@ case "$1" in
     ;;
 "npm")
     mirror_npm_entrypoint $@
+    ;;
+"maven")
+    mirror_maven_entrypoint $@
     ;;
 --help | -h | help)
     help

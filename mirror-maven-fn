@@ -1,0 +1,81 @@
+#!/bin/bash
+
+# creator by shencangsheng
+
+source ./tools
+
+function mirror_maven_install() {
+
+    echo '' >.env
+
+    if contains_args "--magic"; then
+
+        if [ ! -f "$_PWD/magic/.env" ]; then
+            Error "Need to install magic. exec: ./ctl magic hlep"
+            exit 1
+        fi
+
+        source $_PWD/magic/.env
+
+        cat <<EOF >.env
+HTTP_PROXY="http://$MAGIC_USERNAME:$MAGIC_PASSWORD@magic:7890"
+HTTPS_PROXY="http://$MAGIC_USERNAME:$MAGIC_PASSWORD@magic:7890"
+NO_PROXY="localhost,127.0.0.1"
+EOF
+    fi
+
+    docker compose up -d
+}
+
+function mirror_maven_uninstall() {
+    docker compose down
+}
+
+function mirror_maven_help() {
+    cat <<EOF
+
+  Usage: ./ctl maven [OPTION...]
+
+  Examples:
+        ./ctl maven install # install maven registry
+        ./ctl maven install --magic # install maven registry, enable magic
+        ./ctl maven uninstall # uninstall maven registry
+        ./ctl maven join # show using registry
+EOF
+}
+
+function mirror_maven_join() {
+    local content=$(
+        cat <<EOF
+
+    Methods to Set Custom Registry
+
+    Options:
+
+    1. pom.xml
+
+    <repositories>
+    $_GREEN
+        <repository>
+            <id>private-nexus</id>
+            <url>http://xx.xx.xx.xx:18081/repository/maven-public/</url>
+        </repository>
+    $_NC    
+    </repositories>
+    
+    2. settings.xml
+
+    <mirrors>
+    $_GREEN
+        <mirror>
+            <id>nexus</id>
+            <mirrorOf>*</mirrorOf>
+            <url>http://xx.xx.xx.xx:18081/repository/maven-public/</url>
+        </mirror>
+    $_NC
+    </mirrors>
+
+EOF
+    )
+    echo -e "$content"
+}

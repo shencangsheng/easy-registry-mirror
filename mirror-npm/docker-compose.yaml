@@ -3,6 +3,7 @@ version: "3"
 services:
   npm-registry:
     image: verdaccio/verdaccio:4
+    restart: always
     ports:
       - "14873:4873"
     volumes:

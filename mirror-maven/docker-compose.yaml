@@ -1,0 +1,24 @@
+version: "3"
+services:
+  maven-registry:
+    image: sonatype/nexus3:3.69.0
+    restart: always
+    ports:
+      - "18081:8081"
+    volumes:
+      - mirror-maven-vol:/nexus-data
+    env_file:
+      - .env
+    networks:
+      - magic-network
+    healthcheck:
+      test: ["CMD-SHELL", "curl http://localhost:8081/ || exit 1"]
+      interval: 1m
+      timeout: 10s
+      retries: 3
+volumes:
+  mirror-maven-vol:
+    external: true
+networks:
+  magic-network:
+    external: true
