@@ -7,8 +7,6 @@ services:
       - "18081:8081"
     volumes:
       - mirror-maven-vol:/nexus-data
-    env_file:
-      - .env
     networks:
       - magic-network
 volumes:
