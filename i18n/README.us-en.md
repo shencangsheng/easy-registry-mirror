@@ -17,17 +17,19 @@ chmod +x ctl
 ./ctl docker install
 ./ctl docker sync help
 ./ctl npm help
+./ctl maven help
 ```
 
 ## Features
 
-1. Docker Registry
+1. Proxy Docker Registry
 2. Auto Sync Docker Images
 3. NPM Registry
+4. Maven Registry
 
 ## Upcoming Features
 
-1. Maven Registry
+1. pip Registry
 
 ## Principle
 
