@@ -72,12 +72,12 @@ function mirror_maven_magic() {
         访问 http://xx.xx.xx.xx:18081
     
     step-2:
-        右上角 $_GREEN Sign in $_NC
+        右上角: ${_GREEN}Sign in${_NC}
         账号：admin
-        密码：执行 $_GREEN  docker exec -it mirror-maven-maven-registry-1 sh -c "cat /nexus-data/admin.password" $_NC 来获取
+        密码：执行 ${_GREEN}docker exec -it mirror-maven-maven-registry-1 sh -c "cat /nexus-data/admin.password"${_NC} 来获取
 
     step-3:
-        左上角 $_GREEN Config $_NC
+        左上角: ${_GREEN}Config${_NC}
     
     step-4:
         System -> HTTP -> Proxy Settings
@@ -88,12 +88,12 @@ function mirror_maven_magic() {
         HTTP Proxy Host: magic
         HTTP Proxy Port: 7890
         HTTP Authentication Username: user
-        HTTP Authentication Password: 执行 $_GREEN  ./ctl magic auth $_NC 来获取
+        HTTP Authentication Password: 执行 ${_GREEN}./ctl magic auth ${_NC}来获取
 
         HTTPS Proxy Host: magic
         HTTPS Proxy Port: 7890
         HTTPS Authentication Username: user
-        HTTPS Authentication Password: 执行 $_GREEN  ./ctl magic auth $_NC 来获取
+        HTTPS Authentication Password: 执行 ${_GREEN}./ctl magic auth ${_NC}来获取
         
 EOF
     )
