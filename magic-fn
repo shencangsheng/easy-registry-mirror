@@ -115,3 +115,15 @@ function magic_help() {
         ./ctl magic join # show trying
 EOF
 }
+
+function magic_auth() {
+
+  source .env
+
+  cat <<EOF
+
+  Username: user
+  Password: $MAGIC_PASSWORD
+  
+EOF
+}

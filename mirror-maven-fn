@@ -6,24 +6,6 @@ source ./tools
 
 function mirror_maven_install() {
 
-    echo '' >.env
-
-    if contains_args "--magic"; then
-
-        if [ ! -f "$_PWD/magic/.env" ]; then
-            Error "Need to install magic. exec: ./ctl magic hlep"
-            exit 1
-        fi
-
-        source $_PWD/magic/.env
-
-        cat <<EOF >.env
-HTTP_PROXY="http://$MAGIC_USERNAME:$MAGIC_PASSWORD@magic:7890"
-HTTPS_PROXY="http://$MAGIC_USERNAME:$MAGIC_PASSWORD@magic:7890"
-NO_PROXY="localhost,127.0.0.1"
-EOF
-    fi
-
     docker compose up -d
 }
 
@@ -38,9 +20,9 @@ function mirror_maven_help() {
 
   Examples:
         ./ctl maven install # install maven registry
-        ./ctl maven install --magic # install maven registry, enable magic
         ./ctl maven uninstall # uninstall maven registry
         ./ctl maven join # show using registry
+        ./ctl maven magic # Configuration magic
 EOF
 }
 
@@ -75,6 +57,44 @@ function mirror_maven_join() {
     $_NC
     </mirrors>
 
+EOF
+    )
+    echo -e "$content"
+}
+
+function mirror_maven_magic() {
+    local content=$(
+        cat <<EOF
+
+    目前没有找到什么好方法来自动化这一步，需要手动配置;
+
+    step-1: 
+        访问 http://xx.xx.xx.xx:18081
+    
+    step-2:
+        右上角 $_GREEN Sign in $_NC
+        账号：admin
+        密码：执行 $_GREEN  docker exec -it mirror-maven-maven-registry-1 sh -c "cat /nexus-data/admin.password" $_NC 来获取
+
+    step-3:
+        左上角 $_GREEN Config $_NC
+    
+    step-4:
+        System -> HTTP -> Proxy Settings/HTTPS Proxy Host
+
+    step-5:
+        配置 Host 与 Authentication
+
+        HTTP Proxy Host: magic
+        HTTP Proxy Port: 7890
+        HTTP Authentication Username: user
+        HTTP Authentication Password: 执行 $_GREEN  ./ctl magic auth $_NC 来获取
+
+        HTTPS Proxy Host: magic
+        HTTPS Proxy Port: 7890
+        HTTPS Authentication Username: user
+        HTTPS Authentication Password: 执行 $_GREEN  ./ctl magic auth $_NC 来获取
+        
 EOF
     )
     echo -e "$content"

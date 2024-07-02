@@ -52,6 +52,9 @@ function magic_entrypoint() {
     "help")
         magic_help
         ;;
+    "auth")
+        magic_auth
+        ;;
     *)
         Error "Unknown option $2"
         exit 1
@@ -143,6 +146,9 @@ function mirror_maven_entrypoint() {
         ;;
     "help")
         mirror_maven_help
+        ;;
+    "magic")
+        mirror_maven_magic
         ;;
     *)
         Error "Unknown option $2"
