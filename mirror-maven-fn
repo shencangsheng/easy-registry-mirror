@@ -80,7 +80,7 @@ function mirror_maven_magic() {
         左上角 $_GREEN Config $_NC
     
     step-4:
-        System -> HTTP -> Proxy Settings/HTTPS Proxy Host
+        System -> HTTP -> Proxy Settings
 
     step-5:
         配置 Host 与 Authentication
