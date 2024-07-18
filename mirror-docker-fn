@@ -180,6 +180,7 @@ EOF
 }
 
 function mirror_docker_sync_status() {
+  local cron_file=$(get_cron_file)
   local sync_flag=$(cat $cron_file | grep "$_PWD/ctl docker sync exec" | wc -l)
 
   if [ $sync_flag -eq 0 ]; then
@@ -199,7 +200,7 @@ function mirror_docker_status() {
     ● docker.service
       $(get_service_status)
     ● docker-sync.service
-      $(mirror_docker_sync_status)
+      $sync_status
 EOF
   )
   echo -e "$content"
