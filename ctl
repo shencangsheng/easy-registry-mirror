@@ -35,13 +35,11 @@ create_docker_vol "mirror-maven-vol"
 create_docker_network "magic-network"
 create_docker_network "mirror-docker-network"
 
-ALL_SERVICES=(docker magic maven npm)
-
 function get_services_status() {
-    for element in "${ALL_SERVICES[@]}"; do
-        local command="${element}_entrypoint status"
-        eval "$command"
-    done
+    mirror_docker_status
+    mirror_magic_status
+    mirror_maven_status
+    mirror_npm_status
 }
 
 function magic_entrypoint() {
