@@ -71,7 +71,7 @@ EOF
     echo -e "$content"
 }
 
-function get_npm_status() {
+function mirror_npm_status() {
     local content=$(
         cat <<EOF
     ● npm.service

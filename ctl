@@ -120,6 +120,9 @@ function mirror_npm_entrypoint() {
     "join")
         mirror_npm_join
         ;;
+    "status")
+        mirror_npm_status
+        ;;
     "help")
         mirror_npm_help
         ;;
