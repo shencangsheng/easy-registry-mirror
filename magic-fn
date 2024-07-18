@@ -129,7 +129,7 @@ function magic_auth() {
 EOF
 }
 
-function mirror_magic_status() {
+function magic_status() {
   local content=$(
     cat <<EOF
     ● magic.service

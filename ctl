@@ -39,8 +39,7 @@ ALL_SERVICES=(docker magic maven npm)
 
 function get_services_status() {
     for element in "${ALL_SERVICES[@]}"; do
-        cd mirror-$element
-        local command="mirror_${element}_status"
+        local command="${element}_entrypoint status"
         eval "$command"
     done
 }
