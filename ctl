@@ -37,7 +37,7 @@ create_docker_network "mirror-docker-network"
 
 function get_services_status() {
     mirror_docker_status
-    mirror_magic_status
+    magic_status
     mirror_maven_status
     mirror_npm_status
 }
@@ -185,6 +185,7 @@ function help() {
 
     Examples:
         ./ctl help
+        ./ctl status
         ./ctl docker help
         ./ctl magic help
         ./ctl npm help
@@ -206,6 +207,7 @@ function help_cn() {
 
     Examples:
         ./ctl help
+        ./ctl status
         ./ctl docker help
         ./ctl magic help
         ./ctl npm help
