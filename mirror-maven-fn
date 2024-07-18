@@ -23,6 +23,7 @@ function mirror_maven_help() {
         ./ctl maven uninstall # uninstall maven registry
         ./ctl maven join # show using registry
         ./ctl maven magic # Configuration magic
+        ./ctl maven status # show maven status
 EOF
 }
 
@@ -95,6 +96,16 @@ function mirror_maven_magic() {
         HTTPS Authentication Username: user
         HTTPS Authentication Password: 执行 ${_GREEN}./ctl magic auth ${_NC}来获取
         
+EOF
+    )
+    echo -e "$content"
+}
+
+function mirror_maven_status() {
+    local content=$(
+        cat <<EOF
+    ● maven.service
+      $(get_service_status)
 EOF
     )
     echo -e "$content"

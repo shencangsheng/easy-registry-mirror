@@ -42,6 +42,7 @@ function mirror_npm_help() {
         ./ctl npm install --magic # install npm registry, enable magic
         ./ctl npm uninstall # uninstall npm registry
         ./ctl npm join # show using registry
+        ./ctl npm status # show npm status
 EOF
 }
 

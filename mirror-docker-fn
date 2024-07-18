@@ -109,8 +109,10 @@ function mirror_docker_help() {
   Examples:
         ./ctl docker install # install docker registry
         ./ctl docker uninstall # uninstall docker registry
+        ./ctl docker status # show docker status
         ./ctl docker join # show trying
         ./ctl docker sync help # show sync help
+        ./ctl docker sync status # show sync status
 EOF
 }
 
@@ -175,4 +177,30 @@ function mirror_docker_help_sync_images() {
         ./ctl docker sync uninstall # uninstall auto sync images task
         ./ctl doecker sync exec # sync requirements.txt images
 EOF
+}
+
+function mirror_docker_sync_status() {
+  local sync_flag=$(cat $cron_file | grep "$_PWD/ctl docker sync exec" | wc -l)
+
+  if [ $sync_flag -eq 0 ]; then
+    echo "Active: ${_RED}inactive (dead)${_NC}"
+  else
+    echo "Active: ${_GREEN}active (running)${_NC}"
+  fi
+
+}
+
+function mirror_docker_status() {
+
+  local sync_status=$(mirror_docker_sync_status)
+
+  local content=$(
+    cat <<EOF
+    ● docker.service
+      $(get_service_status)
+    ● docker-sync.service
+      $(mirror_docker_sync_status)
+EOF
+  )
+  echo -e "$content"
 }

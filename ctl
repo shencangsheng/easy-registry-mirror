@@ -35,6 +35,16 @@ create_docker_vol "mirror-maven-vol"
 create_docker_network "magic-network"
 create_docker_network "mirror-docker-network"
 
+ALL_SERVICES=(docker magic maven npm)
+
+function get_services_status() {
+    for element in "${ALL_SERVICES[@]}"; do
+        cd mirror-$element
+        local command="mirror_${element}_status"
+        eval "$command"
+    done
+}
+
 function magic_entrypoint() {
     cd magic
     Info "Start Magic"
@@ -54,6 +64,9 @@ function magic_entrypoint() {
         ;;
     "auth")
         magic_auth
+        ;;
+    "status")
+        mirror_magic_status
         ;;
     *)
         Error "Unknown option $2"
@@ -75,6 +88,9 @@ function mirror_docker_entrypoint() {
         ;;
     "join")
         mirror_docker_join
+        ;;
+    "status")
+        mirror_docker_status
         ;;
     "sync")
         case "$3" in
@@ -153,6 +169,9 @@ function mirror_maven_entrypoint() {
     "magic")
         mirror_maven_magic
         ;;
+    "status")
+        mirror_maven_status
+        ;;
     *)
         Error "Unknown option $2"
         exit 1
@@ -214,6 +233,9 @@ case "$1" in
     ;;
 "maven")
     mirror_maven_entrypoint $@
+    ;;
+"status")
+    get_services_status
     ;;
 --help | -h | help)
     help
