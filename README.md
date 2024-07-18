@@ -16,6 +16,7 @@ chmod +x ctl
 ./ctl docker sync help
 ./ctl npm help
 ./ctl maven help
+./ctl status
 ```
 
 ## Features
