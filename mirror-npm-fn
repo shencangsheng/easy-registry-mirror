@@ -70,3 +70,13 @@ EOF
     )
     echo -e "$content"
 }
+
+function get_npm_status() {
+    local content=$(
+        cat <<EOF
+    ● npm.service
+      $(get_service_status)
+EOF
+    )
+    echo -e "$content"
+}

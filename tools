@@ -132,3 +132,17 @@ function get_cron_file() {
 
     echo $cron_file
 }
+
+function get_service_status() {
+    local services_status=$(docker compose ps --services --filter "status=running" 2>&1 | grep -v 'level=warning')
+    local all_services=$(docker compose config --services 2>&1 | grep -v 'level=warning')
+
+    IFS=' ' read -r -a running_services <<<"$services_status"
+    IFS=' ' read -r -a all_services_array <<<"$all_services"
+
+    if [ ${#running_services[@]} -eq ${#all_services_array[@]} ]; then
+        echo "Active: ${_GREEN}active (running)${_NC}"
+    else
+        echo "Active: ${_RED}inactive (dead)${_NC}"
+    fi
+}
