@@ -31,6 +31,7 @@ source ./mirror-maven-fn
 create_docker_vol "mirror-docker-vol"
 create_docker_vol "mirror-npm-vol"
 create_docker_vol "mirror-maven-vol"
+create_docker_vol "mirror-pypi-vol"
 
 create_docker_network "magic-network"
 create_docker_network "mirror-docker-network"
@@ -89,6 +90,9 @@ function mirror_docker_entrypoint() {
     "status")
         mirror_docker_status
         ;;
+    "clean")
+        mirror_docker_clean
+        ;;
     "sync")
         case "$3" in
         "exec")
@@ -136,6 +140,9 @@ function mirror_npm_entrypoint() {
     "status")
         mirror_npm_status
         ;;
+    "clean")
+        mirror_npm_clean
+        ;;
     "help")
         mirror_npm_help
         ;;
@@ -168,6 +175,9 @@ function mirror_maven_entrypoint() {
         ;;
     "status")
         mirror_maven_status
+        ;;
+    "clean")
+        mirror_maven_clean
         ;;
     *)
         Error "Unknown option $2"

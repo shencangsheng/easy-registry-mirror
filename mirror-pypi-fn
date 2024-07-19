@@ -4,29 +4,29 @@
 
 source ./tools
 
-function mirror_maven_install() {
+function mirror_pypi_install() {
     docker compose up -d
 }
 
-function mirror_maven_uninstall() {
+function mirror_pypi_uninstall() {
     docker compose down
 }
 
-function mirror_maven_help() {
+function mirror_pypi_help() {
     cat <<EOF
 
-  Usage: ./ctl maven [OPTION...]
+  Usage: ./ctl pypi [OPTION...]
 
   Examples:
-        ./ctl maven install # install maven registry
-        ./ctl maven uninstall # uninstall maven registry
-        ./ctl maven join # show using registry
-        ./ctl maven magic # Configuration magic
-        ./ctl maven status # show maven status
+        ./ctl pypi install # install maven registry
+        ./ctl pypi uninstall # uninstall maven registry
+        ./ctl pypi join # show using registry
+        ./ctl pypi magic # Configuration magic
+        ./ctl pypi status # show maven status
 EOF
 }
 
-function mirror_maven_join() {
+function mirror_pypi_join() {
     local content=$(
         cat <<EOF
 
@@ -62,7 +62,7 @@ EOF
     echo -e "$content"
 }
 
-function mirror_maven_magic() {
+function mirror_pypi_magic() {
     local content=$(
         cat <<EOF
 
@@ -100,17 +100,17 @@ EOF
     echo -e "$content"
 }
 
-function mirror_maven_status() {
+function mirror_pypi_status() {
     local content=$(
         cat <<EOF
-    ● maven.service
+    ● pypi.service
       $(get_service_status)
 EOF
     )
     echo -e "$content"
 }
 
-function mirror_maven_clean() {
-    mirror_maven_uninstall
-    del_docker_vol 'mirror-maven-vol'
+function mirror_pypi_clean() {
+    mirror_pypi_uninstall
+    del_docker_vol 'mirror-pypi-vol'
 }

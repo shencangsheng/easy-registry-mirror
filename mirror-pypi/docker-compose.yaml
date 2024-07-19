@@ -1,0 +1,17 @@
+version: "3"
+services:
+  pypi-registry:
+    image: sonatype/nexus3:3.69.0
+    restart: always
+    ports:
+      - "18082:8081"
+    volumes:
+      - mirror-pypi-vol:/nexus-data
+    networks:
+      - magic-network
+volumes:
+  mirror-pypi-vol:
+    external: true
+networks:
+  magic-network:
+    external: true

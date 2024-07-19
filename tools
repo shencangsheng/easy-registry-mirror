@@ -146,3 +146,11 @@ function get_service_status() {
         echo "Active: ${_RED}inactive (dead)${_NC}"
     fi
 }
+
+function del_docker_vol() {
+    local vol_name=$1
+
+    if docker volume inspect $vol_name >/dev/null 2>&1; then
+        docker volume rm $vol_name
+    fi
+}

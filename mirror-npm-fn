@@ -81,3 +81,8 @@ EOF
     )
     echo -e "$content"
 }
+
+function mirror_npm_clean() {
+    mirror_npm_uninstall
+    del_docker_vol 'mirror-npm-vol'
+}

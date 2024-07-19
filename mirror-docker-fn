@@ -188,7 +188,6 @@ function mirror_docker_sync_status() {
   else
     echo "Active: ${_GREEN}active (running)${_NC}"
   fi
-
 }
 
 function mirror_docker_status() {
@@ -199,9 +198,14 @@ function mirror_docker_status() {
     cat <<EOF
     ● docker.service
       $(get_service_status)
-    ● docker-sync.service
+    ● docker.sync-image.service
       $sync_status
 EOF
   )
   echo -e "$content"
+}
+
+function mirror_docker_clean() {
+  mirror_docker_uninstall
+  del_docker_vol 'mirror-docker-vol'
 }
