@@ -278,6 +278,9 @@ case "$1" in
 "maven")
     mirror_maven_entrypoint $@
     ;;
+"python|pypi")
+    mirror_pypi_entrypoint $@
+    ;;
 "status")
     get_services_status
     ;;
