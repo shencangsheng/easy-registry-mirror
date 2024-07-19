@@ -13,6 +13,8 @@ if [ ! -f "$INIT_FLAG" ]; then
 
     echo "Nexus is up and running."
 
+    set -e
+
     local NEXUS_URL="http://localhost:8081"
     local NEXUS_USER="admin"
     local NEXUS_PASS=$(cat /nexus-data/admin.password)
