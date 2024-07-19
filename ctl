@@ -27,6 +27,7 @@ source ./magic-fn
 source ./mirror-docker-fn
 source ./mirror-npm-fn
 source ./mirror-maven-fn
+source ./mirror-pypi-fn
 
 create_docker_vol "mirror-docker-vol"
 create_docker_vol "mirror-npm-vol"
@@ -41,6 +42,7 @@ function get_services_status() {
     magic_status
     mirror_maven_status
     mirror_npm_status
+    mirror_pypi_status
 }
 
 function magic_entrypoint() {
@@ -178,6 +180,39 @@ function mirror_maven_entrypoint() {
         ;;
     "clean")
         mirror_maven_clean
+        ;;
+    *)
+        Error "Unknown option $2"
+        exit 1
+        ;;
+    esac
+}
+
+function mirror_pypi_entrypoint() {
+    cd mirror-pypi
+    Info "Start Python Registry"
+
+    case "$2" in
+    "install")
+        mirror_pypi_install $@
+        ;;
+    "uninstall")
+        mirror_pypi_uninstall
+        ;;
+    "join")
+        mirror_pypi_join
+        ;;
+    "help")
+        mirror_pypi_help
+        ;;
+    "magic")
+        mirror_pypi_magic
+        ;;
+    "status")
+        mirror_pypi_status
+        ;;
+    "clean")
+        mirror_pypi_clean
         ;;
     *)
         Error "Unknown option $2"
