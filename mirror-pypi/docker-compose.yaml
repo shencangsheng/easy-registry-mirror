@@ -7,8 +7,12 @@ services:
       - "18082:8081"
     volumes:
       - mirror-pypi-vol:/nexus-data
+      - ./docker-entrypoint.sh:/docker-entrypoint.sh
     networks:
       - magic-network
+    env_file:
+      - .env
+    entrypoint: /docker-entrypoint.sh
 volumes:
   mirror-pypi-vol:
     external: true

@@ -5,6 +5,25 @@
 source ./tools
 
 function mirror_pypi_install() {
+
+    echo '' >.env
+
+    if contains_args "--magic"; then
+
+        if [ ! -f "$_PWD/magic/.env" ]; then
+            Error "Need to install magic. exec: ./ctl magic hlep"
+            exit 1
+        fi
+
+        source $_PWD/magic/.env
+
+        cat <<EOF >.env
+MAGIC_ENABLE="TRUE"
+MAGIC_USERNAME="$MAGIC_USERNAME"
+MAGIC_PASSWORD="$MAGIC_PASSWORD"
+EOF
+
+    fi
     docker compose up -d
 }
 
