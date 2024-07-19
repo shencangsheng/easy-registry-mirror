@@ -113,7 +113,7 @@ if [ ! -f "$INIT_FLAG" ]; then
     create_repo
     create_proxy_repo
     create_group_repo
-    setting_magic
+    # setting_magic
 
     touch "$INIT_FLAG"
 
