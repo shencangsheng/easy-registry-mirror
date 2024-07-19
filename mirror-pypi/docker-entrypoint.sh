@@ -6,7 +6,7 @@ INIT_FLAG="/nexus-data/initialized.flag"
 
 if [ ! -f "$INIT_FLAG" ]; then
 
-    while ! curl -s -o /dev/null -w "%{http_code}" http://localhost:8081/service/metrics/ping | grep -q "200"; do
+    while ! curl -s -o /dev/null http://localhost:8081; do
         echo "Nexus is not ready yet, waiting..."
         sleep 5
     done
