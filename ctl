@@ -278,7 +278,7 @@ case "$1" in
 "maven")
     mirror_maven_entrypoint $@
     ;;
-"python|pypi")
+python | pypi)
     mirror_pypi_entrypoint $@
     ;;
 "status")
