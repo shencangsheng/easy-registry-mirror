@@ -90,24 +90,32 @@ if [ ! -f "$INIT_FLAG" ]; then
     function setting_magic() {
         if [[ $MAGIC_ENABLE = "TRUE" ]]; then
             curl -u "${NEXUS_USER}:${NEXUS_PASS}" \
-                -X PUT "${NEXUS_URL}/service/rest/v1/settings/http" \
+                -X POST "${NEXUS_URL}/service/extdirect" \
                 -H "Content-Type: application/json" \
                 -d "{
-                        \"hostname\": \"magic\",
-                        \"port\": 7890,
-                        \"username\": \"${MAGIC_USERNAME}\",
-                        \"password\": \"${MAGIC_PASSPWRD}\",
-                        \"passwordIsIncluded\": true
-                    }"
-            curl -u "${NEXUS_USER}:${NEXUS_PASS}" \
-                -X PUT "${NEXUS_URL}/service/rest/v1/settings/https" \
-                -H "Content-Type: application/json" \
-                -d "{
-                        \"hostname\": \"magic\",
-                        \"port\": 7890,
-                        \"username\": \"${MAGIC_USERNAME}\",
-                        \"password\": \"${MAGIC_PASSPWRD}\",
-                        \"passwordIsIncluded\": true
+                      \"action\": \"coreui_HttpSettings\",
+                      \"method\": \"update\",
+                      \"data\": [
+                        {
+                          \"httpEnabled\": true,
+                          \"httpHost\": \"magic\",
+                          \"httpPort\": \"7890\",
+                          \"httpAuthEnabled\": true,
+                          \"httpAuthUsername\": \"${MAGIC_USERNAME}\",
+                          \"httpAuthPassword\": \"${MAGIC_PASSWORD}\",
+                          \"httpsEnabled\": true,
+                          \"httpsHost\": \"magic\",
+                          \"httpsPort\": \"7890\",
+                          \"httpsAuthEnabled\": true,
+                          \"httpsAuthUsername\": \"${MAGIC_USERNAME}\",
+                          \"httpsAuthPassword\": \"${MAGIC_PASSWORD}\",
+                          \"nonProxyHosts\": [],
+                          \"timeout\": null,
+                          \"retries\": null
+                        }
+                      ],
+                      \"type\": \"rpc\",
+                      \"tid\": 1
                     }"
         fi
     }
@@ -115,7 +123,7 @@ if [ ! -f "$INIT_FLAG" ]; then
     create_repo
     create_proxy_repo
     create_group_repo
-    # setting_magic
+    setting_magic
 
     touch "$INIT_FLAG"
 
