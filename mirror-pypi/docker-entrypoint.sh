@@ -91,29 +91,22 @@ if [ ! -f "$INIT_FLAG" ]; then
                 -X PUT "${NEXUS_URL}/service/rest/v1/settings/http" \
                 -H "Content-Type: application/json" \
                 -d "{
-           \"httpProxy\": {
-             \"enabled\": true,
-             \"host\": \"magic\",
-             \"port\": 7890,
-             \"authentication\": {
-               \"username\": \"${MAGIC_USERNAME}\",
-               \"password\": \"${MAGIC_PASSWORD}\"
-             }
-           },
-           \"httpsProxy\": {
-             \"enabled\": true,
-             \"host\": \"magic\",
-             \"port\": 7890,
-             \"authentication\": {
-               \"username\": \"${MAGIC_USERNAME}\",
-               \"password\": \"${MAGIC_PASSWORD}\"
-             }
-           },
-           \"nonProxyHosts\": [
-             \"localhost\",
-             \"127.0.0.1\"
-           ]
-         }"
+                        \"hostname\": \"magic\",
+                        \"port\": 7890,
+                        \"username\": \"${MAGIC_USERNAME}\",
+                        \"password\": \"${MAGIC_PASSPWRD}\",
+                        \"passwordIsIncluded\": true
+                    }"
+            curl -u "${NEXUS_USER}:${NEXUS_PASS}" \
+                -X PUT "${NEXUS_URL}/service/rest/v1/settings/https" \
+                -H "Content-Type: application/json" \
+                -d "{
+                        \"hostname\": \"magic\",
+                        \"port\": 7890,
+                        \"username\": \"${MAGIC_USERNAME}\",
+                        \"password\": \"${MAGIC_PASSPWRD}\",
+                        \"passwordIsIncluded\": true
+                    }"
         fi
     }
 
@@ -127,5 +120,3 @@ if [ ! -f "$INIT_FLAG" ]; then
 else
     echo "Initialization already done, skipping."
 fi
-
-fg %1
