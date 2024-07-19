@@ -15,9 +15,9 @@ if [ ! -f "$INIT_FLAG" ]; then
 
     set -e
 
-    local NEXUS_URL="http://localhost:8081"
-    local NEXUS_USER="admin"
-    local NEXUS_PASS=$(cat /nexus-data/admin.password)
+    NEXUS_URL="http://localhost:8081"
+    NEXUS_USER="admin"
+    NEXUS_PASS=$(cat /nexus-data/admin.password)
 
     function create_repo() {
         curl -u "${NEXUS_USER}:${NEXUS_PASS}" \
