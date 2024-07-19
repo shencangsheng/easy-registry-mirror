@@ -4,6 +4,8 @@ INIT_FLAG="/nexus-data/initialized.flag"
 
 /opt/sonatype/nexus/bin/nexus run &
 
+NEXUS_PID=$!
+
 if [ ! -f "$INIT_FLAG" ]; then
 
     while ! curl -s -o /dev/null http://localhost:8081; do
@@ -120,3 +122,5 @@ if [ ! -f "$INIT_FLAG" ]; then
 else
     echo "Initialization already done, skipping."
 fi
+
+wait $NEXUS_PID
