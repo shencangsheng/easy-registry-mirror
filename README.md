@@ -2,7 +2,7 @@
 
 简体中文 | [English](./i18n/README.us-en.md)
 
-**Easy Registry Mirror** 旨在帮助开发者快速搭建一个私有的 `Docker` 仓库，并且无需修改已运行的 `Dockerfile` 或 `docker-compose.yaml`，几乎没有迁移成本。此外，本项目还支持 Maven、npm 和 PyPI 的私有仓库，未来将支持更多仓库。
+**Easy Registry Mirror** 旨在帮助开发者快速搭建一个私有的 `Docker` 仓库，并且无需修改已运行的 `Dockerfile` 或 `docker-compose.yaml`，几乎没有迁移成本。此外，还支持 Maven、npm 和 PyPI 的私有仓库，未来将支持更多仓库。
 
 在国内网络环境日益严峻且不稳定的情况下，无论是企业还是个人，自建仓库变得愈发必要。工具可以极其容易在不同私有仓库中使用**魔法**，能够有效解决网络不稳定带来的困扰。
 
