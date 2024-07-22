@@ -1,0 +1,94 @@
+#!/bin/bash
+
+# creator by shencangsheng
+
+source ./tools
+
+function mirror_pypi_install() {
+
+    echo '' >.env
+
+    if contains_args "--magic"; then
+
+        if [ ! -f "$_PWD/magic/.env" ]; then
+            Error "Need to install magic. exec: ./ctl magic hlep"
+            exit 1
+        fi
+
+        source $_PWD/magic/.env
+
+        cat <<EOF >.env
+MAGIC_ENABLE="TRUE"
+MAGIC_USERNAME="$MAGIC_USERNAME"
+MAGIC_PASSWORD="$MAGIC_PASSWORD"
+EOF
+
+    fi
+    docker compose up -d
+}
+
+function mirror_pypi_uninstall() {
+    docker compose down
+}
+
+function mirror_pypi_help() {
+    cat <<EOF
+
+  Usage: ./ctl pypi [OPTION...]
+
+  Examples:
+        ./ctl pypi install # Install PyPI registry
+        ./ctl pypi install --magic # Install PyPI registry, enable proxy
+        ./ctl pypi uninstall # Uninstall PyPI registry
+        ./ctl pypi clean # Uninstall PyPI registry
+        ./ctl pypi join # Show using registry
+        ./ctl pypi status # Show PyPI status
+        ./ctl pypi clean # Clean out
+EOF
+}
+
+function mirror_pypi_join() {
+    local content=$(
+        cat <<EOF
+
+    Methods to Set Custom Registry
+
+    Options:
+
+    1. Using Command Line Parameter
+
+    $_GREEN
+    pip3 install colorama --index-url http://xx.xx.xx.xx:18082/repository/pypi-group/simple --trusted-host xx.xx.xx.xx
+    $_NC
+
+    2. Using PyPI Gloab Config
+
+    ● Linux/macOS ~/.pip/pip.conf
+    ● Windows %APPDATA%\pip\pip.ini
+
+    $_GREEN
+    [global]
+    index-url = http://xx.xx.xx.xx:18082/repository/pypi-group/simple
+    trusted-host = xx.xx.xx.xx
+    extra-index-url = https://pypi.org/simple
+    $_NC
+
+EOF
+    )
+    echo -e "$content"
+}
+
+function mirror_pypi_status() {
+    local content=$(
+        cat <<EOF
+    ● pypi.service
+      $(get_service_status)
+EOF
+    )
+    echo -e "$content"
+}
+
+function mirror_pypi_clean() {
+    mirror_pypi_uninstall
+    del_docker_vol 'mirror-pypi-vol'
+}

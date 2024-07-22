@@ -1,6 +1,8 @@
 #!/bin/bash
-
-# creator by shencangsheng
+# Author: Cangsheng Sheng
+# Email: shencangsheng@126.com
+# Created: 2024-06-10
+# Version: 1.0
 
 set -e
 set -o pipefail
@@ -27,10 +29,12 @@ source ./magic-fn
 source ./mirror-docker-fn
 source ./mirror-npm-fn
 source ./mirror-maven-fn
+source ./mirror-pypi-fn
 
 create_docker_vol "mirror-docker-vol"
 create_docker_vol "mirror-npm-vol"
 create_docker_vol "mirror-maven-vol"
+create_docker_vol "mirror-pypi-vol"
 
 create_docker_network "magic-network"
 create_docker_network "mirror-docker-network"
@@ -40,6 +44,7 @@ function get_services_status() {
     magic_status
     mirror_maven_status
     mirror_npm_status
+    mirror_pypi_status
 }
 
 function magic_entrypoint() {
@@ -74,7 +79,7 @@ function magic_entrypoint() {
 
 function mirror_docker_entrypoint() {
     cd mirror-docker
-    Info "Start Docker Registry"
+    Info "Start Docker registry"
 
     case "$2" in
     "install")
@@ -88,6 +93,9 @@ function mirror_docker_entrypoint() {
         ;;
     "status")
         mirror_docker_status
+        ;;
+    "clean")
+        mirror_docker_clean
         ;;
     "sync")
         case "$3" in
@@ -121,7 +129,7 @@ function mirror_docker_entrypoint() {
 
 function mirror_npm_entrypoint() {
     cd mirror-npm
-    Info "Start NPM Registry"
+    Info "Start npm registry"
 
     case "$2" in
     "install")
@@ -136,6 +144,9 @@ function mirror_npm_entrypoint() {
     "status")
         mirror_npm_status
         ;;
+    "clean")
+        mirror_npm_clean
+        ;;
     "help")
         mirror_npm_help
         ;;
@@ -148,7 +159,7 @@ function mirror_npm_entrypoint() {
 
 function mirror_maven_entrypoint() {
     cd mirror-maven
-    Info "Start Maven Registry"
+    Info "Start Maven registry"
 
     case "$2" in
     "install")
@@ -169,6 +180,39 @@ function mirror_maven_entrypoint() {
     "status")
         mirror_maven_status
         ;;
+    "clean")
+        mirror_maven_clean
+        ;;
+    *)
+        Error "Unknown option $2"
+        exit 1
+        ;;
+    esac
+}
+
+function mirror_pypi_entrypoint() {
+    cd mirror-pypi
+    Info "Start PyPI registry"
+
+    case "$2" in
+    "install")
+        mirror_pypi_install $@
+        ;;
+    "uninstall")
+        mirror_pypi_uninstall
+        ;;
+    "join")
+        mirror_pypi_join
+        ;;
+    "help")
+        mirror_pypi_help
+        ;;
+    "status")
+        mirror_pypi_status
+        ;;
+    "clean")
+        mirror_pypi_clean
+        ;;
     *)
         Error "Unknown option $2"
         exit 1
@@ -179,7 +223,7 @@ function mirror_maven_entrypoint() {
 function help() {
     cat <<EOF
 
-    Designed for quickly setting up a private Docker registry without requiring any modifications to existing Dockerfiles or docker-compose.yaml files, ensuring minimal migration costs. Future support will include additional repositories such as npm, maven, and pip.
+    Used for quickly setting up a private Docker registry without needing to modify existing Dockerfile or docker-compose.yaml files, resulting in almost no migration costs. Additionally, this project supports private repositories for Maven, npm, and PyPI, with plans to support more types of repositories in the future.
 
     Usage: ./ctl [OPTION...]
 
@@ -190,10 +234,11 @@ function help() {
         ./ctl magic help
         ./ctl npm help
         ./ctl maven help
+        ./ctl pypi help
 
     Other options:
 
-         -h, --help                 give this help list
+         -h, --help                 Give this help list
            , --help-cn              中文帮助文档 
 EOF
 }
@@ -201,7 +246,7 @@ EOF
 function help_cn() {
     cat <<EOF
 
-    用于快速搭建一个 Docker 私有仓库，并且无需修改已运行的 Dockerfile / docker-compose.yaml，几乎没有迁移成本；未来会支持更多 npm、maven、pip 等仓库。
+    用于快速搭建一个 Docker 私有仓库，并且无需修改已运行的 Dockerfile / docker-compose.yaml，几乎没有迁移成本；此外，本项目还支持 Maven、npm 和 PyPI 的私有仓库，未来将支持更多仓库。
 
     Usage: ./ctl [OPTION...]
 
@@ -212,10 +257,11 @@ function help_cn() {
         ./ctl magic help
         ./ctl npm help
         ./ctl maven help
+        ./ctl pypi help
 
     Other options:
 
-         -h, --help                 give this help list
+         -h, --help                 帮助列表
            , --help-cn              中文帮助文档 
 EOF
 }
@@ -232,6 +278,9 @@ case "$1" in
     ;;
 "maven")
     mirror_maven_entrypoint $@
+    ;;
+python | pypi | pip | py)
+    mirror_pypi_entrypoint $@
     ;;
 "status")
     get_services_status

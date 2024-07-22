@@ -1,6 +1,8 @@
 #!/bin/bash
-
-# creator by shencangsheng
+# Author: Cangsheng Sheng
+# Email: shencangsheng@126.com
+# Created: 2024-06-10
+# Version: 1.0
 
 source ./tools
 
@@ -11,7 +13,7 @@ function magic_uninstall() {
   local content=$(
     cat <<EOF
 
-Remove the 'proxies' configuration in /etc/docker/daemon.json, Then restart docker
+Remove the 'proxies' configuration in /etc/docker/daemon.json, Then restart Docker
 
 vim /etc/docker/daemon.json
 ==============================================
@@ -50,7 +52,7 @@ EOF
   local content=$(
     cat <<EOF
 
-Configure the proxy in /etc/docker/daemon.json, Then restart docker
+Configure the proxy in /etc/docker/daemon.json, Then restart Docker
 
 vim /etc/docker/daemon.json
 
@@ -80,7 +82,7 @@ function magic_join() {
   local content=$(
     cat <<EOF
 
-Configure the proxy in /etc/docker/daemon.json, Then restart docker
+Configure the proxy in /etc/docker/daemon.json, Then restart Docker
 
 vim /etc/docker/daemon.json
 
@@ -110,10 +112,10 @@ function magic_help() {
   Usage: ./ctl magic [OPTION...]
 
   Examples:
-        ./ctl magic install # install magic
-        ./ctl magic uninstall # uninstall magic
-        ./ctl magic join # show trying
-        ./ctl magic status # show magic status
+        ./ctl magic install # Install magic
+        ./ctl magic uninstall # Uninstall magic
+        ./ctl magic join # Show trying
+        ./ctl magic status # Show magic status
 EOF
 }
 

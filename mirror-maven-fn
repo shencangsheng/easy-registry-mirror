@@ -1,11 +1,30 @@
 #!/bin/bash
-
-# creator by shencangsheng
+# Author: Cangsheng Sheng
+# Email: shencangsheng@126.com
+# Created: 2024-06-10
+# Version: 1.0
 
 source ./tools
 
 function mirror_maven_install() {
+    echo '' >.env
 
+    if contains_args "--magic"; then
+
+        if [ ! -f "$_PWD/magic/.env" ]; then
+            Error "Need to install magic. exec: ./ctl magic hlep"
+            exit 1
+        fi
+
+        source $_PWD/magic/.env
+
+        cat <<EOF >.env
+MAGIC_ENABLE="TRUE"
+MAGIC_USERNAME="$MAGIC_USERNAME"
+MAGIC_PASSWORD="$MAGIC_PASSWORD"
+EOF
+
+    fi
     docker compose up -d
 }
 
@@ -19,11 +38,13 @@ function mirror_maven_help() {
   Usage: ./ctl maven [OPTION...]
 
   Examples:
-        ./ctl maven install # install maven registry
-        ./ctl maven uninstall # uninstall maven registry
-        ./ctl maven join # show using registry
-        ./ctl maven magic # Configuration magic
-        ./ctl maven status # show maven status
+        ./ctl maven install # Install Maven registry
+        ./ctl maven install --magic # Install Maven registry, enable proxy
+        ./ctl maven uninstall # Uninstall Maven registry
+        ./ctl maven join # Show using registry
+        ./ctl maven magic # Configuration magic, @deprecated
+        ./ctl maven status # Show Maven status
+        ./ctl maven clean # Clean out
 EOF
 }
 
@@ -51,8 +72,9 @@ function mirror_maven_join() {
     <mirrors>
     $_GREEN
         <mirror>
-            <id>nexus</id>
-            <mirrorOf>*</mirrorOf>
+            <id>Nexus</id>
+            <name>Nexus</name>
+            <mirrorOf>central</mirrorOf>
             <url>http://xx.xx.xx.xx:18081/repository/maven-public/</url>
         </mirror>
     $_NC
@@ -67,7 +89,7 @@ function mirror_maven_magic() {
     local content=$(
         cat <<EOF
 
-    目前没有找到什么好方法来自动化这一步，需要手动配置;
+    作者已经找到安装部署时自动配置代理的方法，如果之前已经安装了并且未开启代理，则可以使用此方法手动配置;
 
     step-1: 
         访问 http://xx.xx.xx.xx:18081
@@ -109,4 +131,9 @@ function mirror_maven_status() {
 EOF
     )
     echo -e "$content"
+}
+
+function mirror_maven_clean() {
+    mirror_maven_uninstall
+    del_docker_vol 'mirror-maven-vol'
 }
