@@ -40,7 +40,6 @@ function mirror_pypi_help() {
         ./ctl pypi install # Install PyPI registry
         ./ctl pypi install --magic # Install PyPI registry, enable proxy
         ./ctl pypi uninstall # Uninstall PyPI registry
-        ./ctl pypi clean # Uninstall PyPI registry
         ./ctl pypi join # Show using registry
         ./ctl pypi status # Show PyPI status
         ./ctl pypi clean # Clean out
