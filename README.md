@@ -15,6 +15,7 @@ chmod +x ctl
 ./ctl help
 ./ctl docker help
 ./ctl docker install
+./ctl magic help
 ./ctl npm help
 ./ctl maven help
 ./ctl pypi help
