@@ -1,6 +1,8 @@
 #!/bin/bash
-
-# creator by shencangsheng
+# Author: Cangsheng Sheng
+# Email: shencangsheng@126.com
+# Created: 2024-06-10
+# Version: 1.0
 
 source ./tools
 
@@ -38,11 +40,12 @@ function mirror_npm_help() {
   Usage: ./ctl npm [OPTION...]
 
   Examples:
-        ./ctl npm install # install npm registry
-        ./ctl npm install --magic # install npm registry, enable magic
-        ./ctl npm uninstall # uninstall npm registry
-        ./ctl npm join # show using registry
-        ./ctl npm status # show npm status
+        ./ctl npm install # Install npm registry
+        ./ctl npm install --magic # Install npm registry, enable proxy
+        ./ctl npm uninstall # Uninstall npm registry
+        ./ctl npm join # Show using registry
+        ./ctl npm status # Show npm status
+        ./ctl npm clean # Clean out
 EOF
 }
 

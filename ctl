@@ -1,6 +1,8 @@
 #!/bin/bash
-
-# creator by shencangsheng
+# Author: Cangsheng Sheng
+# Email: shencangsheng@126.com
+# Created: 2024-06-10
+# Version: 1.0
 
 set -e
 set -o pipefail
@@ -77,7 +79,7 @@ function magic_entrypoint() {
 
 function mirror_docker_entrypoint() {
     cd mirror-docker
-    Info "Start Docker Registry"
+    Info "Start Docker registry"
 
     case "$2" in
     "install")
@@ -127,7 +129,7 @@ function mirror_docker_entrypoint() {
 
 function mirror_npm_entrypoint() {
     cd mirror-npm
-    Info "Start NPM Registry"
+    Info "Start npm registry"
 
     case "$2" in
     "install")
@@ -157,7 +159,7 @@ function mirror_npm_entrypoint() {
 
 function mirror_maven_entrypoint() {
     cd mirror-maven
-    Info "Start Maven Registry"
+    Info "Start Maven registry"
 
     case "$2" in
     "install")
@@ -190,7 +192,7 @@ function mirror_maven_entrypoint() {
 
 function mirror_pypi_entrypoint() {
     cd mirror-pypi
-    Info "Start Python Registry"
+    Info "Start PyPI registry"
 
     case "$2" in
     "install")
@@ -204,9 +206,6 @@ function mirror_pypi_entrypoint() {
         ;;
     "help")
         mirror_pypi_help
-        ;;
-    "magic")
-        mirror_pypi_magic
         ;;
     "status")
         mirror_pypi_status
@@ -224,7 +223,7 @@ function mirror_pypi_entrypoint() {
 function help() {
     cat <<EOF
 
-    Designed for quickly setting up a private Docker registry without requiring any modifications to existing Dockerfiles or docker-compose.yaml files, ensuring minimal migration costs. Future support will include additional repositories such as npm, maven, and pip.
+    Used for quickly setting up a private Docker registry without needing to modify existing Dockerfile or docker-compose.yaml files, resulting in almost no migration costs. Additionally, this project supports private repositories for Maven, npm, and PyPI, with plans to support more types of repositories in the future.
 
     Usage: ./ctl [OPTION...]
 
@@ -235,10 +234,11 @@ function help() {
         ./ctl magic help
         ./ctl npm help
         ./ctl maven help
+        ./ctl pypi help
 
     Other options:
 
-         -h, --help                 give this help list
+         -h, --help                 Give this help list
            , --help-cn              中文帮助文档 
 EOF
 }
@@ -246,7 +246,7 @@ EOF
 function help_cn() {
     cat <<EOF
 
-    用于快速搭建一个 Docker 私有仓库，并且无需修改已运行的 Dockerfile / docker-compose.yaml，几乎没有迁移成本；未来会支持更多 npm、maven、pip 等仓库。
+    用于快速搭建一个 Docker 私有仓库，并且无需修改已运行的 Dockerfile / docker-compose.yaml，几乎没有迁移成本；此外，本项目还支持 Maven、npm 和 PyPI 的私有仓库，未来将支持更多仓库。
 
     Usage: ./ctl [OPTION...]
 
@@ -257,10 +257,11 @@ function help_cn() {
         ./ctl magic help
         ./ctl npm help
         ./ctl maven help
+        ./ctl pypi help
 
     Other options:
 
-         -h, --help                 give this help list
+         -h, --help                 帮助列表
            , --help-cn              中文帮助文档 
 EOF
 }
@@ -278,7 +279,7 @@ case "$1" in
 "maven")
     mirror_maven_entrypoint $@
     ;;
-python | pypi)
+python | pypi | pip | py)
     mirror_pypi_entrypoint $@
     ;;
 "status")

@@ -2,9 +2,7 @@
 
 English | [简体中文](https://github.com/shencangsheng/easy-registry-mirror)
 
-In today's increasingly challenging environment, it is essential for both companies and individuals to start building their own repositories. This project facilitates the rapid setup of a private `Docker registry` without requiring any modifications to existing `Dockerfile` or `docker-compose.yaml` files, ensuring minimal migration costs. Future support will include additional repositories such as `npm`, `maven`, and `pip`.
-
-The principle is that all requests to Docker first enter the proxy layer. The proxy determines if the request is for fetching a Docker image, and if so, it uploads the image to the Docker Registry before forwarding the request to the Docker Registry and responding. Unlike the common practice of periodically synchronizing Docker Hub images, this strategy only fetches the necessary images, avoiding excessive traffic and storage waste. However, it still provides the functionality to automatically synchronize images based on a list weekly. To learn how to use it, execute `./ctl docker sync help`.
+**Easy Registry Mirror** aims to help users quickly set up a private Docker registry without needing to modify existing Dockerfile or docker-compose.yaml files, resulting in almost no migration costs. Additionally, this project supports private repositories for Maven, npm, and PyPI, with plans to support more types of repositories in the future.
 
 ## Trying
 
@@ -15,31 +13,38 @@ chmod +x ctl
 ./ctl help
 ./ctl docker help
 ./ctl docker install
-./ctl docker sync help
 ./ctl npm help
 ./ctl maven help
+./ctl pypi help
+./ctl status
 ```
 
 ## Features
 
-1. Proxy Docker Registry
-2. Auto Sync Docker Images
-3. NPM Registry
-4. Maven Registry
+1. Proxy Docker registry
+2. Auto sync Docker images
+3. npm registry
+4. Maven registry
+5. PyPI registry
 
 ## Upcoming Features
 
-1. pip Registry
+1. APT
+2. Yum(RPM)
+3. Conda
+4. Go registry
 
 ## Principle
 
+The principle is that all Docker requests first go through a proxy layer. The proxy determines whether the request is for fetching an image. If so, the proxy uploads the image to the Docker registry before forwarding the request to the Docker registry and responding. This strategy differs from the common approach of periodically synchronizing Docker Hub images by only fetching the required images, thus avoiding unnecessary traffic and storage waste. However, it still provides the functionality to automatically sync images weekly based on a list. Execute `./ctl docker sync help` to learn how to use this feature.
+
 ```mermaid
 graph TD;
-    A[Docker Request] --> B[Docker Registry Proxy];
-    B --> C{docker pull?};
-    C -- Yes --> D[docker pull image];
-    C -- No --> E[Docker Registry Server];
-    D --> F[Upload Docker Registry];
+    A[Docker request] --> B[Docker registry proxy];
+    B --> C{Get Docker image API?};
+    C -- Yes --> D[Docker pull image];
+    C -- No --> E[Docker registry server];
+    D --> F[Upload Docker registry];
     F --> E
     E -- Response --> B
     B -- Response --> A
@@ -52,10 +57,6 @@ This project was inspired by the [shencangsheng/registry-mirror-proxy](https://g
 This project was inspired by the [verdaccio/verdaccio](https://github.com/verdaccio/verdaccio) available in the GitHub project.
 
 This project was inspired by the [sonatype/nexus3](https://github.com/sonatype/docker-nexus3) available in the GitHub project.
-
-## Problem
-
-If your server can no longer pull images, download the required images from the project's [Releases](https://github.com/shencangsheng/easy-registry-mirror/releases/tag/v1.2.0). On your server, run `gunzip -c xxx.tar.gz | docker load` to load the images. Use `./ctl magic help` to learn how to use the project.
 
 ## License
 

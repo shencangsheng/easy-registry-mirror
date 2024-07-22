@@ -1,6 +1,8 @@
 #!/bin/bash
-
-# creator by shencangsheng
+# Author: Cangsheng Sheng
+# Email: shencangsheng@126.com
+# Created: 2024-06-10
+# Version: 1.0
 
 source ./tools
 
@@ -12,7 +14,7 @@ function mirror_docker_install() {
   local content=$(
     cat <<EOF
 
-Configure /etc/docker/daemon.json on the application server, Then restart docker
+Configure /etc/docker/daemon.json on the application server, Then restart Docker
 
 vim /etc/docker/daemon.json
 
@@ -46,7 +48,7 @@ function mirror_docker_uninstall() {
   local content=$(
     cat <<EOF
 
-Configure /etc/docker/daemon.json on the application server, Then restart docker
+Configure /etc/docker/daemon.json on the application server, Then restart Docker
 
 vim /etc/docker/daemon.json
 
@@ -73,7 +75,7 @@ function mirror_docker_join() {
   local content=$(
     cat <<EOF
 
-Configure /etc/docker/daemon.json on the application server, Then restart docker
+Configure /etc/docker/daemon.json on the application server, Then restart Docker
 
 vim /etc/docker/daemon.json
 
@@ -107,12 +109,13 @@ function mirror_docker_help() {
   Usage: ./ctl docker [OPTION...]
 
   Examples:
-        ./ctl docker install # install docker registry
-        ./ctl docker uninstall # uninstall docker registry
-        ./ctl docker status # show docker status
-        ./ctl docker join # show trying
-        ./ctl docker sync help # show sync help
-        ./ctl docker sync status # show sync status
+        ./ctl docker install # Install Docker registry
+        ./ctl docker uninstall # Uninstall Docker registry
+        ./ctl docker status # Show Docker status
+        ./ctl docker join # Show trying
+        ./ctl docker sync help # Show Docker images sync help
+        ./ctl docker sync status # Show Docker images sync status
+        ./ctl docker clean # Clean out
 EOF
 }
 
@@ -173,9 +176,9 @@ function mirror_docker_help_sync_images() {
   Usage: ./ctl docker sync [OPTION...]
 
   Examples:
-        ./ctl docker sync install # enable auto sync images task
-        ./ctl docker sync uninstall # uninstall auto sync images task
-        ./ctl doecker sync exec # sync requirements.txt images
+        ./ctl docker sync install # Enable auto sync images task
+        ./ctl docker sync uninstall # Uninstall auto sync images task
+        ./ctl doecker sync exec # Sync requirements.txt images
 EOF
 }
 

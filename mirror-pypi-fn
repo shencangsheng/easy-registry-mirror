@@ -37,11 +37,13 @@ function mirror_pypi_help() {
   Usage: ./ctl pypi [OPTION...]
 
   Examples:
-        ./ctl pypi install # install maven registry
-        ./ctl pypi uninstall # uninstall maven registry
-        ./ctl pypi join # show using registry
-        ./ctl pypi magic # Configuration magic
-        ./ctl pypi status # show maven status
+        ./ctl pypi install # Install PyPI registry
+        ./ctl pypi install --magic # Install PyPI registry, enable proxy
+        ./ctl pypi uninstall # Uninstall PyPI registry
+        ./ctl pypi clean # Uninstall PyPI registry
+        ./ctl pypi join # Show using registry
+        ./ctl pypi status # Show PyPI status
+        ./ctl pypi clean # Clean out
 EOF
 }
 
@@ -53,67 +55,24 @@ function mirror_pypi_join() {
 
     Options:
 
-    1. pom.xml
+    1. Using Command Line Parameter
 
-    <repositories>
     $_GREEN
-        <repository>
-            <id>private-nexus</id>
-            <url>http://xx.xx.xx.xx:18081/repository/maven-public/</url>
-        </repository>
-    $_NC    
-    </repositories>
-    
-    2. settings.xml
-
-    <mirrors>
-    $_GREEN
-        <mirror>
-            <id>nexus</id>
-            <mirrorOf>*</mirrorOf>
-            <url>http://xx.xx.xx.xx:18081/repository/maven-public/</url>
-        </mirror>
+    pip3 install colorama --index-url http://xx.xx.xx.xx:18082/repository/pypi-group/simple --trusted-host xx.xx.xx.xx
     $_NC
-    </mirrors>
 
-EOF
-    )
-    echo -e "$content"
-}
+    2. Using PyPI Gloab Config
 
-function mirror_pypi_magic() {
-    local content=$(
-        cat <<EOF
+    ● Linux/macOS ~/.pip/pip.conf
+    ● Windows %APPDATA%\pip\pip.ini
 
-    目前没有找到什么好方法来自动化这一步，需要手动配置;
+    $_GREEN
+    [global]
+    index-url = http://xx.xx.xx.xx:18082/repository/pypi-group/simple
+    trusted-host = xx.xx.xx.xx
+    extra-index-url = https://pypi.org/simple
+    $_NC
 
-    step-1: 
-        访问 http://xx.xx.xx.xx:18081
-    
-    step-2:
-        右上角: ${_GREEN}Sign in${_NC}
-        账号：admin
-        密码：执行 ${_GREEN}docker exec -it mirror-maven-maven-registry-1 sh -c "cat /nexus-data/admin.password"${_NC} 来获取
-
-    step-3:
-        左上角: ${_GREEN}Config${_NC}
-    
-    step-4:
-        System -> HTTP -> Proxy Settings
-
-    step-5:
-        配置 Host 与 Authentication
-
-        HTTP Proxy Host: magic
-        HTTP Proxy Port: 7890
-        HTTP Authentication Username: user
-        HTTP Authentication Password: 执行 ${_GREEN}./ctl magic auth ${_NC}来获取
-
-        HTTPS Proxy Host: magic
-        HTTPS Proxy Port: 7890
-        HTTPS Authentication Username: user
-        HTTPS Authentication Password: 执行 ${_GREEN}./ctl magic auth ${_NC}来获取
-        
 EOF
     )
     echo -e "$content"

@@ -1,6 +1,9 @@
 #!/bin/bash
+# Author: Cangsheng Sheng
+# Email: shencangsheng@126.com
+# Created: 2024-06-10
+# Version: 1.0
 
-# creator by shencangsheng
 set -e
 
 _RED='\033[0;31m'
