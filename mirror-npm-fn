@@ -61,6 +61,7 @@ function mirror_npm_join() {
 
     $_GREEN
     npm install --registry=http://xx.xx.xx.xx:14873 lodash
+    yarn install lodash --registry http://xx.xx.xx.xx:14873
     $_NC
 
     2. Using npm Config Command
@@ -68,6 +69,13 @@ function mirror_npm_join() {
     $_GREEN
     npm config set registry http://xx.xx.xx.xx:14873
     npm install lodash
+    $_NC
+
+    3. Using yarn Config Command
+
+    $_GREEN
+    yarn config set registry http://xx.xx.xx.xx:14873
+    yarn install lodash
     $_NC
 
 EOF
