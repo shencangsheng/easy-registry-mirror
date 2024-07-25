@@ -26,6 +26,10 @@ EOF
 
     fi
     docker compose up -d
+
+    cat <<EOF
+    http address - http://0.0.0.0:18081/
+EOF
 }
 
 function mirror_maven_uninstall() {
@@ -45,6 +49,7 @@ function mirror_maven_help() {
         ./ctl maven magic # Configuration magic, @deprecated
         ./ctl maven status # Show Maven status
         ./ctl maven clean # Clean out
+        ./ctl maven user # Show registry default user
 EOF
 }
 
@@ -136,4 +141,12 @@ EOF
 function mirror_maven_clean() {
     mirror_maven_uninstall
     del_docker_vol 'mirror-maven-vol'
+}
+
+function mirror_maven_user() {
+    local password=$(docker compose exec maven-registry sh -c 'cat /nexus-data/admin.password || echo "默认密码已被更改"')
+    cat <<EOF
+    user: admin
+    password: $password
+EOF
 }

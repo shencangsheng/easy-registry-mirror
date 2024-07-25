@@ -183,6 +183,9 @@ function mirror_maven_entrypoint() {
     "clean")
         mirror_maven_clean
         ;;
+    "user")
+        mirror_maven_user
+        ;;
     *)
         Error "Unknown option $2"
         exit 1
@@ -212,6 +215,9 @@ function mirror_pypi_entrypoint() {
         ;;
     "clean")
         mirror_pypi_clean
+        ;;
+    "user")
+        mirror_pypi_user
         ;;
     *)
         Error "Unknown option $2"

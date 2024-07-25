@@ -25,6 +25,10 @@ EOF
 
     fi
     docker compose up -d
+
+    cat <<EOF
+    http address - http://0.0.0.0:18082/
+EOF
 }
 
 function mirror_pypi_uninstall() {
@@ -43,6 +47,7 @@ function mirror_pypi_help() {
         ./ctl pypi join # Show using registry
         ./ctl pypi status # Show PyPI status
         ./ctl pypi clean # Clean out
+        ./ctl pypi user # Show registry default user
 EOF
 }
 
@@ -90,4 +95,12 @@ EOF
 function mirror_pypi_clean() {
     mirror_pypi_uninstall
     del_docker_vol 'mirror-pypi-vol'
+}
+
+function mirror_pypi_user() {
+    local password=$(docker compose exec pypi-registry sh -c 'cat /nexus-data/admin.password || echo "默认密码已被更改"')
+    cat <<EOF
+    user: admin
+    password: $password
+EOF
 }
