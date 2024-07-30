@@ -1,6 +1,6 @@
 # Easy Registry Mirror
 
-English | [简体中文](https://github.com/shencangsheng/easy-registry-mirror)
+[简体中文](https://github.com/shencangsheng/easy-registry-mirror) | English
 
 **Easy Registry Mirror** aims to help developers quickly set up a private Docker repository without the need to modify existing `Dockerfile` or `docker-compose.yaml` files, resulting in almost zero migration cost. Additionally, this project supports private repositories for Maven, npm, and PyPI, with plans to support more repositories in the future.
 
