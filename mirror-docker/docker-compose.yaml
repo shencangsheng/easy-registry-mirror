@@ -15,7 +15,7 @@ services:
     ports:
       - 15000:5000
   docker-registry-proxy:
-    image: shencangsheng/registry-mirror-proxy:1.0.0
+    image: shencangsheng/registry-mirror-proxy:1.1.0
     restart: always
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
