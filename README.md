@@ -51,15 +51,15 @@ graph TD;
     B -- Response --> A
 ```
 
-## Credits
+## Libraries Used
 
-This project was inspired by the [shencangsheng/registry-mirror-proxy](https://github.com/shencangsheng/registry-mirror-proxy) available in the GitHub project.
+These open source libraries were used to create this project.
 
-This project was inspired by the [verdaccio/verdaccio](https://github.com/verdaccio/verdaccio) available in the GitHub project.
+- [shencangsheng/registry-mirror-proxy](https://github.com/shencangsheng/registry-mirror-proxy)
+- [verdaccio/verdaccio](https://github.com/verdaccio/verdaccio)
+- [sonatype/nexus3](https://github.com/sonatype/docker-nexus3)
 
-This project was inspired by the [sonatype/nexus3](https://github.com/sonatype/docker-nexus3) available in the GitHub project.
-
-## Magic
+## Proxy
 
 如果已经因为网络无法获取到镜像，可以点击 [Releases](https://github.com/shencangsheng/easy-registry-mirror/releases/tag/v1.4.0) 下载项目所需要的基础镜像，运行 `gunzip -c xxx.tar.gz | docker load` 来载入镜像，`./ctl magic help` 来了解如何使用**代理**。
 

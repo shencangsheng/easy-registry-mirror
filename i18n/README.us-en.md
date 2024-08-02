@@ -51,13 +51,13 @@ graph TD;
     B -- Response --> A
 ```
 
-## Credits
+## Libraries Used
 
-This project was inspired by the [shencangsheng/registry-mirror-proxy](https://github.com/shencangsheng/registry-mirror-proxy) available in the GitHub project.
+These open source libraries were used to create this project.
 
-This project was inspired by the [verdaccio/verdaccio](https://github.com/verdaccio/verdaccio) available in the GitHub project.
-
-This project was inspired by the [sonatype/nexus3](https://github.com/sonatype/docker-nexus3) available in the GitHub project.
+- [shencangsheng/registry-mirror-proxy](https://github.com/shencangsheng/registry-mirror-proxy)
+- [verdaccio/verdaccio](https://github.com/verdaccio/verdaccio)
+- [sonatype/nexus3](https://github.com/sonatype/docker-nexus3)
 
 ## License
 
