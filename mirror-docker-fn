@@ -98,6 +98,10 @@ systemctl restart docker
 docker pull xx.xx.xx.xx:5000/busybox:latest
 docker pull busybox:latest
 
+## Warning
+
+When deploying image services with Docker Swarm, it is necessary to configure the daemon.json file not only on the worker nodes but also on the manager nodes for proper operation.
+
 EOF
   )
   echo -e "$content"
