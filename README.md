@@ -32,8 +32,9 @@ chmod +x ctl
 
 1. APT
 2. Yum(RPM)
-3. Conda
-4. Go registry
+3. Cargo
+4. Conda
+5. Go registry
 
 ## Principle
 
