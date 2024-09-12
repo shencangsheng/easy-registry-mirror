@@ -74,11 +74,15 @@ These open source libraries were used to create this project.
 - [shencangsheng/registry-mirror-proxy](https://github.com/shencangsheng/registry-mirror-proxy)
 - [verdaccio/verdaccio](https://github.com/verdaccio/verdaccio)
 - [sonatype/nexus3](https://github.com/sonatype/docker-nexus3)
-- **fastestmirror** 功能感谢 [RubyMetric/chsrc](https://github.com/RubyMetric/chsrc) 提供的软件支持
+- [RubyMetric/chsrc](https://github.com/RubyMetric/chsrc)
 
 ## Proxy
 
 如果已经因为网络无法获取到镜像，可以点击 [Releases](https://github.com/shencangsheng/easy-registry-mirror/releases/tag/v1.5.0) 下载项目所需要的基础镜像，运行 `gunzip -c xxx.tar.gz | docker load` 来载入镜像，`./ctl magic help` 来了解如何使用**代理**。
+
+## 致谢
+
+1. **fastestmirror** 功能，特别感谢 [RubyMetric/chsrc](https://github.com/RubyMetric/chsrc) 项目提供的软件支持
 
 ## License
 
