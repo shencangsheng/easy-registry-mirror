@@ -30,6 +30,7 @@ chmod +x ctl
 - [ ] `Yum(RPM)`
 - [ ] `Cargo`
 - [ ] `Go registry`
+- [ ] `Conda`
 
 ## Features
 
