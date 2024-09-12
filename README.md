@@ -20,6 +20,17 @@ chmod +x ctl
 ./ctl status
 ```
 
+## Registry
+
+- [x] `Docker`
+- [x] `Maven`
+- [x] `npm`
+- [x] `PyPI`
+- [ ] `APT`
+- [ ] `Yum(RPM)`
+- [ ] `Cargo`
+- [ ] `Go registry`
+
 ## Features
 
 1. Proxy Docker registry
@@ -27,6 +38,8 @@ chmod +x ctl
 3. npm registry
 4. Maven registry
 5. PyPI registry
+6. 本次 **fastestmirror** 功能感谢 [RubyMetric/chsrc](https://github.com/RubyMetric/chsrc) 提供的软件支持，可以对所有源进行测速
+7. npm fastestmirror
 
 ## Upcoming Features
 
@@ -35,6 +48,8 @@ chmod +x ctl
 3. Cargo
 4. Conda
 5. Go registry
+6. Maven fastestmirror
+7. PyPi fastestmirror
 
 ## Principle
 
@@ -59,6 +74,7 @@ These open source libraries were used to create this project.
 - [shencangsheng/registry-mirror-proxy](https://github.com/shencangsheng/registry-mirror-proxy)
 - [verdaccio/verdaccio](https://github.com/verdaccio/verdaccio)
 - [sonatype/nexus3](https://github.com/sonatype/docker-nexus3)
+- [RubyMetric/chsrc](https://github.com/RubyMetric/chsrc)
 
 ## Proxy
 

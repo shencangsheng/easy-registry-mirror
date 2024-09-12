@@ -20,6 +20,17 @@ chmod +x ctl
 ./ctl status
 ```
 
+## Registry
+
+- [x] `Docker`
+- [x] `Maven`
+- [x] `npm`
+- [x] `PyPI`
+- [ ] `APT`
+- [ ] `Yum(RPM)`
+- [ ] `Cargo`
+- [ ] `Go registry`
+
 ## Features
 
 1. Proxy Docker registry
