@@ -2,7 +2,7 @@ version: "3"
 
 services:
   npm-registry:
-    image: verdaccio/verdaccio:4
+    image: verdaccio/verdaccio:5.31
     restart: always
     ports:
       - "14873:4873"
