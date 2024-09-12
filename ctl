@@ -160,7 +160,7 @@ function mirror_npm_entrypoint() {
         mirror_npm_restart
         ;;
     "fastest")
-        mirror_npm_fastest_registry
+        mirror_npm_fastest_mirror
         ;;
     *)
         Error "Unknown option $2"

@@ -49,7 +49,7 @@ function mirror_npm_help() {
         ./ctl npm start # start
         ./ctl npm stop # stop
         ./ctl npm restart # restart
-        ./ctl npm fastest # Set the fastest registry.
+        ./ctl npm fastestmirror # Set the fastest mirror, default: https://registry.npmjs.org.
 EOF
 }
 
@@ -115,12 +115,12 @@ function mirror_npm_restart() {
     mirror_npm_start
 }
 
-function mirror_npm_fastest_registry() {
-    local registry=$(get_fast_registry 'npm' 'https://registry.npmjs.org/')
+function mirror_npm_fastest_mirror() {
+    local mirror=$(get_fast_mirror 'npm' 'https://registry.npmjs.org/')
 
-    sed -i "s|url: \".*\"|url: \"$registry\"|" ./conf/config.yaml
+    sed -i "s|url: \".*\"|url: \"$mirror\"|" ./conf/config.yaml
 
     docker compose restart
 
-    Info "Successfully switched to: $registry"
+    Info "Successfully switched to: $mirror"
 }
