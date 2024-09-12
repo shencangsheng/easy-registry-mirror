@@ -150,6 +150,18 @@ function mirror_npm_entrypoint() {
     "help")
         mirror_npm_help
         ;;
+    "start")
+        mirror_npm_start
+        ;;
+    "stop")
+        mirror_npm_stop
+        ;;
+    "restart")
+        mirror_npm_restart
+        ;;
+    "fastest")
+        mirror_npm_fastest_registry
+        ;;
     *)
         Error "Unknown option $2"
         exit 1
@@ -186,6 +198,15 @@ function mirror_maven_entrypoint() {
     "user")
         mirror_maven_user
         ;;
+    "start")
+        mirror_maven_start
+        ;;
+    "stop")
+        mirror_maven_stop
+        ;;
+    "restart")
+        mirror_maven_restart
+        ;;
     *)
         Error "Unknown option $2"
         exit 1
@@ -218,6 +239,15 @@ function mirror_pypi_entrypoint() {
         ;;
     "user")
         mirror_pypi_user
+        ;;
+    "start")
+        mirror_pypi_start
+        ;;
+    "stop")
+        mirror_pypi_stop
+        ;;
+    "restart")
+        mirror_pypi_restart
         ;;
     *)
         Error "Unknown option $2"

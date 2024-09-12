@@ -46,6 +46,10 @@ function mirror_npm_help() {
         ./ctl npm join # Show using registry
         ./ctl npm status # Show npm status
         ./ctl npm clean # Clean out
+        ./ctl npm start # start
+        ./ctl npm stop # stop
+        ./ctl npm restart # restart
+        ./ctl npm fastest # Set the fastest registry.
 EOF
 }
 
@@ -96,4 +100,25 @@ EOF
 function mirror_npm_clean() {
     mirror_npm_uninstall
     del_docker_vol 'mirror-npm-vol'
+}
+
+function mirror_npm_stop() {
+    docker compose down
+}
+
+function mirror_npm_start() {
+    docker compose up -d
+}
+
+function mirror_npm_restart() {
+    mirror_npm_stop
+    mirror_npm_start
+}
+
+function mirror_npm_fastest_registry() {
+    local registry=$(get_fast_registry 'npm' 'https://registry.npmjs.org/')
+
+    sed -i 's|url: ".*"|url: "https://registry.npmjs.org/"|' ./conf/config.yaml
+
+    docker compose restart
 }

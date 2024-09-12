@@ -48,6 +48,9 @@ function mirror_pypi_help() {
         ./ctl pypi status # Show PyPI status
         ./ctl pypi clean # Clean out
         ./ctl pypi user # Show registry default user
+        ./ctl pypi start # start
+        ./ctl pypi stop # stop
+        ./ctl pypi restart # restart
 EOF
 }
 
@@ -103,4 +106,17 @@ function mirror_pypi_user() {
     user: admin
     password: $password
 EOF
+}
+
+function mirror_pypi_stop() {
+    docker compose down
+}
+
+function mirror_pypi_start() {
+    docker compose up -d
+}
+
+function mirror_pypi_restart() {
+    mirror_pypi_stop
+    mirror_pypi_start
 }

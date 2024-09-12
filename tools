@@ -157,3 +157,15 @@ function del_docker_vol() {
         docker volume rm $vol_name
     fi
 }
+
+function get_fast_registry() {
+    local mirror=$1
+    local default_registry=$2
+    local result=$(. $_PWD/chsrc measure -no-color $mirror 2>/dev/null | grep '镜像源地址:' | awk '{print $2}')
+
+    if [ -z "$result" ]; then
+        result=$default_registry
+    fi
+
+    echo $result
+}

@@ -50,6 +50,9 @@ function mirror_maven_help() {
         ./ctl maven status # Show Maven status
         ./ctl maven clean # Clean out
         ./ctl maven user # Show registry default user
+        ./ctl maven start # start
+        ./ctl maven stop # stop
+        ./ctl maven restart # restart
 EOF
 }
 
@@ -149,4 +152,17 @@ function mirror_maven_user() {
     user: admin
     password: $password
 EOF
+}
+
+function mirror_maven_stop() {
+    docker compose down
+}
+
+function mirror_maven_start() {
+    docker compose up -d
+}
+
+function mirror_maven_restart() {
+    mirror_maven_stop
+    mirror_maven_start
 }
