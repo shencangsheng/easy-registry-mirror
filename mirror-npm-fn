@@ -118,7 +118,9 @@ function mirror_npm_restart() {
 function mirror_npm_fastest_registry() {
     local registry=$(get_fast_registry 'npm' 'https://registry.npmjs.org/')
 
-    sed -i 's|url: ".*"|url: "https://registry.npmjs.org/"|' ./conf/config.yaml
+    sed -i "s|url: \".*\"|url: \"$registry\"|" ./conf/config.yaml
 
     docker compose restart
+
+    Info "Successfully switched to: $registry"
 }
