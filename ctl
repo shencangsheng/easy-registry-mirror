@@ -159,7 +159,7 @@ function mirror_npm_entrypoint() {
     "restart")
         mirror_npm_restart
         ;;
-    "fastest|fastestmirror")
+    "fastest" | "fastestmirror")
         mirror_npm_fastest_mirror
         ;;
     *)
