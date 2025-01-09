@@ -45,7 +45,7 @@ $ ./ctl maven install
 </details>
 
 <details>
-<summary>pypi</summary>
+<summary>PyPI</summary>
 
 ```bash
 $ ./ctl pypi install
