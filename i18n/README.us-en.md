@@ -20,8 +20,6 @@ This project aims to quickly set up a private repository based on Docker. Initia
 <details>
 <summary>Docker</summary>
 
--
-
 ```bash
 $ ./ctl docker install
 ```
@@ -31,15 +29,27 @@ $ ./ctl docker install
 <details>
 <summary>npm</summary>
 
+```bash
+$ ./ctl npm install
+```
+
 </details>
 
 <details>
 <summary>Maven</summary>
 
+```bash
+$ ./ctl maven install
+```
+
 </details>
 
 <details>
 <summary>pypi</summary>
+
+```bash
+$ ./ctl pypi install
+```
 
 </details>
 
