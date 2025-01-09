@@ -304,7 +304,7 @@ python | pypi | pip | py)
     exit 0
     ;;
 *)
-    Error "Unknown option $1"
-    exit 1
+    help
+    exit 0
     ;;
 esac
