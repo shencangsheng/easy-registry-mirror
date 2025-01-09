@@ -40,16 +40,16 @@ function mirror_npm_help() {
   Usage: ./ctl npm [OPTION...]
 
   Examples:
-        ./ctl npm install # Install npm registry
-        ./ctl npm install --magic # Install npm registry, enable proxy
-        ./ctl npm uninstall # Uninstall npm registry
-        ./ctl npm join # Show using registry
-        ./ctl npm status # Show npm status
-        ./ctl npm clean # Clean out
-        ./ctl npm start # start
-        ./ctl npm stop # stop
-        ./ctl npm restart # restart
-        ./ctl npm fastestmirror # Set the fastest mirror, default: https://registry.npmjs.org.
+        ./ctl npm install                  # Install npm registry
+        ./ctl npm install --magic          # Install npm registry, enable proxy
+        ./ctl npm uninstall                # Uninstall npm registry
+        ./ctl npm join                     # Show how to use this npm registry
+        ./ctl npm status                   # Show npm status
+        ./ctl npm clean                    # Clean out
+        ./ctl npm start                    # Start
+        ./ctl npm stop                     # Stop
+        ./ctl npm restart                  # Restart
+        ./ctl npm fastestmirror, fm        # Set the fastest mirror, default: https://registry.npmjs.org
 EOF
 }
 

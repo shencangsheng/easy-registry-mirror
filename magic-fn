@@ -109,13 +109,13 @@ EOF
 function magic_help() {
   cat <<EOF
 
-  Usage: ./ctl magic [OPTION...]
+  Usage: ./ctl proxy [OPTION...]
 
   Examples:
-        ./ctl magic install # Install proxy
-        ./ctl magic uninstall # Uninstall proxy
-        ./ctl magic join # Show trying
-        ./ctl magic status # Show proxy status
+        ./ctl proxy install # Install proxy
+        ./ctl proxy uninstall # Uninstall proxy
+        ./ctl proxy join # Show trying
+        ./ctl proxy status # Show proxy status
 EOF
 }
 

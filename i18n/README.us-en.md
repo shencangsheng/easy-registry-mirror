@@ -1,26 +1,10 @@
-# Easy Registry Mirror
+# Swift Registry
 
 [简体中文](https://github.com/shencangsheng/easy-registry-mirror) | English
 
-**Easy Registry Mirror** aims to help developers quickly set up a private Docker repository without the need to modify existing `Dockerfile` or `docker-compose.yaml` files, resulting in almost zero migration cost. Additionally, this project supports private repositories for Maven, npm, and PyPI, with plans to support more repositories in the future.
+This project aims to quickly set up a private repository based on Docker. Initially, it was created to set up a Docker private repository, but it has now been expanded to support `npm`, `Maven`, `PyPI`, and other repositories in the future. Users do not need to worry about proxy issues; simply configure a subscription, and the software will automatically configure it for use in various repositories. All traffic is confined within the respective containers, ensuring security and efficiency.
 
-## Trying
-
-```bash
-git clone https://github.com/shencangsheng/easy-registry-mirror.git
-cd easy-registry-mirror
-chmod +x ctl
-./ctl help
-./ctl docker help
-./ctl docker install
-./ctl magic help
-./ctl npm help
-./ctl maven help
-./ctl pypi help
-./ctl status
-```
-
-## Registry
+## 🌟 Features
 
 - [x] `Docker`
 - [x] `Maven`
@@ -29,41 +13,67 @@ chmod +x ctl
 - [ ] `APT`
 - [ ] `Yum(RPM)`
 - [ ] `Cargo`
-- [ ] `Go registry`
+- [ ] `Conda`
 
-## Features
+## 🛠️ Installation
+
+<details>
+<summary>Docker</summary>
+
+-
+
+```bash
+$ ./ctl docker install
+```
+
+</details>
+
+<details>
+<summary>npm</summary>
+
+</details>
+
+<details>
+<summary>Maven</summary>
+
+</details>
+
+<details>
+<summary>pypi</summary>
+
+</details>
+
+## 💡 Try
+
+```bash
+git clone https://github.com/shencangsheng/easy-registry-mirror.git
+cd easy-registry-mirror
+chmod +x ctl
+./ctl help
+./ctl docker help
+./ctl docker install
+```
+
+## 📖 Features
 
 1. Proxy Docker registry
 2. Auto sync Docker images
-3. npm registry
-4. Maven registry
-5. PyPI registry
+3. npm private repository
+4. Maven private repository
+5. PyPI private repository
+6. npm fastestmirror
 
-## Upcoming Features
+## 🔮 Future features
 
 1. APT
 2. Yum(RPM)
 3. Cargo
 4. Conda
 5. Go registry
+6. Maven fastestmirror
+7. PyPi fastestmirror
 
-## Principle
-
-The principle is that all Docker requests first go through a proxy layer. The proxy determines whether the request is for fetching an image. If so, the proxy uploads the image to the Docker registry before forwarding the request to the Docker registry and responding. This strategy differs from the common approach of periodically synchronizing Docker Hub images by only fetching the required images, thus avoiding unnecessary traffic and storage waste. However, it still provides the functionality to automatically sync images weekly based on a list. Execute `./ctl docker sync help` to learn how to use this feature.
-
-```mermaid
-graph TD;
-    A[Docker request] --> B[Docker registry proxy];
-    B --> C{Get Docker image API?};
-    C -- Yes --> D[Docker pull image];
-    C -- No --> E[Docker registry server];
-    D --> F[Upload Docker registry];
-    F --> E
-    E -- Response --> B
-    B -- Response --> A
-```
-
-## Libraries Used
+## 🤝 Libraries Used
 
 These open source libraries were used to create this project.
 
@@ -71,7 +81,11 @@ These open source libraries were used to create this project.
 - [verdaccio/verdaccio](https://github.com/verdaccio/verdaccio)
 - [sonatype/nexus3](https://github.com/sonatype/docker-nexus3)
 
-## License
+## 🤝 Special thanks
+
+1. **fastestmirror** feature, special thanks to [RubyMetric/chsrc](https://github.com/RubyMetric/chsrc) project for providing software support
+
+## 📝 License
 
 A short snippet describing the license (MIT)
 

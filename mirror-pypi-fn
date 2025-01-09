@@ -41,16 +41,16 @@ function mirror_pypi_help() {
   Usage: ./ctl pypi [OPTION...]
 
   Examples:
-        ./ctl pypi install # Install PyPI registry
-        ./ctl pypi install --magic # Install PyPI registry, enable proxy
-        ./ctl pypi uninstall # Uninstall PyPI registry
-        ./ctl pypi join # Show using registry
-        ./ctl pypi status # Show PyPI status
-        ./ctl pypi clean # Clean out
-        ./ctl pypi user # Show registry default user
-        ./ctl pypi start # start
-        ./ctl pypi stop # stop
-        ./ctl pypi restart # restart
+        ./ctl pypi install                  # Install PyPI registry
+        ./ctl pypi install --magic          # Install PyPI registry, enable proxy
+        ./ctl pypi uninstall                # Uninstall PyPI registry
+        ./ctl pypi join                     # Show using registry
+        ./ctl pypi status                   # Show PyPI status
+        ./ctl pypi clean                    # Clean out
+        ./ctl pypi user                     # Show registry default user
+        ./ctl pypi start                    # Start
+        ./ctl pypi stop                     # Stop
+        ./ctl pypi restart                  # Restart
 EOF
 }
 
@@ -65,7 +65,7 @@ function mirror_pypi_join() {
     1. Using Command Line Parameter
 
     $_GREEN
-    pip3 install colorama --index-url http://xx.xx.xx.xx:18082/repository/pypi-group/simple --trusted-host xx.xx.xx.xx
+    pip3 install colorama --index-url http://<ip>:18082/repository/pypi-group/simple --trusted-host <ip>
     $_NC
 
     2. Using PyPI Gloab Config
@@ -75,8 +75,8 @@ function mirror_pypi_join() {
 
     $_GREEN
     [global]
-    index-url = http://xx.xx.xx.xx:18082/repository/pypi-group/simple
-    trusted-host = xx.xx.xx.xx
+    index-url = http://<ip>:18082/repository/pypi-group/simple
+    trusted-host = <ip>
     extra-index-url = https://pypi.org/simple
     $_NC
 

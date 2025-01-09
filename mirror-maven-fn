@@ -42,17 +42,17 @@ function mirror_maven_help() {
   Usage: ./ctl maven [OPTION...]
 
   Examples:
-        ./ctl maven install # Install Maven registry
-        ./ctl maven install --magic # Install Maven registry, enable proxy
-        ./ctl maven uninstall # Uninstall Maven registry
-        ./ctl maven join # Show using registry
-        ./ctl maven magic # Configuration magic, @deprecated
-        ./ctl maven status # Show Maven status
-        ./ctl maven clean # Clean out
-        ./ctl maven user # Show registry default user
-        ./ctl maven start # start
-        ./ctl maven stop # stop
-        ./ctl maven restart # restart
+        ./ctl maven install                 # Install Maven registry
+        ./ctl maven install --magic         # Install Maven registry, enable proxy
+        ./ctl maven uninstall               # Uninstall Maven registry
+        ./ctl maven join                    # Show using registry
+        ./ctl maven magic                   # Configuration magic, @deprecated
+        ./ctl maven status                  # Show Maven status
+        ./ctl maven clean                   # Clean out
+        ./ctl maven user                    # Show registry default user
+        ./ctl maven start                   # Start
+        ./ctl maven stop                    # Stop
+        ./ctl maven restart                 # Restart
 EOF
 }
 

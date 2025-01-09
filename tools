@@ -169,3 +169,17 @@ function get_fast_mirror() {
 
     echo $result
 }
+
+function check_chsrc() {
+    if [ ! -f "$_PWD/chsrc" ]; then
+        Info "Downloading chsrc..."
+        if ! curl -L --retry 3 --retry-delay 5 https://github.com/RubyMetric/chsrc/releases/download/v0.1.9/chsrc-x64-linux -o $_PWD/chsrc; then
+            Info "GitHub download failed. Trying alternative source..."
+            if ! curl -L --retry 3 --retry-delay 5 https://gitee.com/RubyMetric/chsrc/releases/download/v0.1.9/chsrc-x64-linux -o $_PWD/chsrc; then
+                Error "Failed to download chsrc from both sources."
+                exit 1
+            fi
+        fi
+        chmod +x $_PWD/chsrc
+    fi
+}

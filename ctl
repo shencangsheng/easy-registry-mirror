@@ -39,6 +39,8 @@ create_docker_vol "mirror-pypi-vol"
 create_docker_network "magic-network"
 create_docker_network "mirror-docker-network"
 
+check_chsrc
+
 function get_services_status() {
     mirror_docker_status
     magic_status
@@ -49,7 +51,7 @@ function get_services_status() {
 
 function magic_entrypoint() {
     cd magic
-    Info "Start Magic"
+    Info "Start Proxy"
 
     case "$2" in
     "install")
@@ -267,7 +269,7 @@ function help() {
         ./ctl help
         ./ctl status
         ./ctl docker help
-        ./ctl magic help
+        ./ctl proxy help
         ./ctl npm help
         ./ctl maven help
         ./ctl pypi help
@@ -290,7 +292,7 @@ function help_cn() {
         ./ctl help
         ./ctl status
         ./ctl docker help
-        ./ctl magic help
+        ./ctl proxy help
         ./ctl npm help
         ./ctl maven help
         ./ctl pypi help
@@ -303,7 +305,7 @@ EOF
 }
 
 case "$1" in
-"magic")
+magic | proxy)
     magic_entrypoint $@
     ;;
 "docker")
