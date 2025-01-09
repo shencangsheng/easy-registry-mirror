@@ -261,7 +261,7 @@ function mirror_pypi_entrypoint() {
 function help() {
     cat <<EOF
 
-    Used for quickly setting up a private Docker registry without needing to modify existing Dockerfile or docker-compose.yaml files, resulting in almost no migration costs. Additionally, this project supports private repositories for Maven, npm, and PyPI, with plans to support more types of repositories in the future.
+    本项目旨在快速搭建一个基于 Docker 的私有仓库。起初，该项目仅用于创建一个 Docker 私有仓库，但现已扩展支持 npm、Maven、PyPI 等仓库，未来还将支持更多类型的仓库。用户无需担心代理问题，只需配置一个订阅，软件将自动配置到各个仓库使用，并且所有流量仅在对应容器中使用，确保安全和高效。
 
     Usage: ./ctl [OPTION...]
 
@@ -277,30 +277,6 @@ function help() {
     Other options:
 
          -h, --help                 Give this help list
-           , --help-cn              中文帮助文档 
-EOF
-}
-
-function help_cn() {
-    cat <<EOF
-
-    用于快速搭建一个 Docker 私有仓库，并且无需修改已运行的 Dockerfile / docker-compose.yaml，几乎没有迁移成本；此外，本项目还支持 Maven、npm 和 PyPI 的私有仓库，未来将支持更多仓库。
-
-    Usage: ./ctl [OPTION...]
-
-    Examples:
-        ./ctl help
-        ./ctl status
-        ./ctl docker help
-        ./ctl proxy help
-        ./ctl npm help
-        ./ctl maven help
-        ./ctl pypi help
-
-    Other options:
-
-         -h, --help                 帮助列表
-           , --help-cn              中文帮助文档 
 EOF
 }
 
@@ -325,10 +301,6 @@ python | pypi | pip | py)
     ;;
 --help | -h | help)
     help
-    exit 0
-    ;;
---help-cn | help-cn)
-    help_cn
     exit 0
     ;;
 *)
