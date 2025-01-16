@@ -85,7 +85,7 @@ chmod +x ctl
 
 ## 📖 原理
 
-该方案通过代理层处理所有 Docker 请求。对于拉取镜像的请求，代理层会先将镜像上传到私有 Docker Registry，然后再转发请求并响应。此策略避免了定期同步 Docker Hub 镜像带来的带宽和存储浪费。系统还支持根据预定义列表每周自动同步镜像。执行 `./ctl docker sync help` 了解更多。
+该方案通过代理层处理所有 Docker 请求。对于拉取镜像的请求，代理层会先将镜像上传到私有 Docker Registry，然后再转发请求并响应。此策略避免了定期同步 DockerHub 镜像带来的流量和存储浪费。系统还支持根据预定义列表每周自动同步镜像。执行 `./ctl docker sync help` 了解更多。
 
 ```mermaid
 graph TD;
