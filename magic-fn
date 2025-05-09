@@ -37,7 +37,7 @@ EOF
 
 function magic_install() {
   local sub_url=
-  read -r -p "Sub URL: " sub_url
+  read -r -p "Clash subscription URL: " sub_url
 
   local password=$(openssl rand -base64 24 | tr -dc 'A-Za-z0-9' | head -c 16)
 
